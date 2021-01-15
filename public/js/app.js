@@ -2033,6 +2033,10 @@ var routes = [{
   path: '/',
   component: _components_Bookables_Bookable__WEBPACK_IMPORTED_MODULE_0__.default,
   name: "home"
+}, {
+  path: '/bookable/{:slug}',
+  component: _components_Bookables_Bookable__WEBPACK_IMPORTED_MODULE_0__.default,
+  name: "bookable.show"
 }];
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__.default({
   mode: 'history',
