@@ -39,7 +39,7 @@ class BookableController extends Controller
      */
     public function show(Bookable $bookable)
     {
-        return new BookableResource(Bookable::findOrFail($bookable));
+        return new BookableResource(Bookable::findOrFail($bookable->id));
     }
 
     /**

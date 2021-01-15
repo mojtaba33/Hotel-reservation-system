@@ -1,10 +1,11 @@
 import VueRouter from 'vue-router';
 
 import Bookable from "./components/Bookables/Bookable";
+import ShowBookable from "./components/Bookables/ShowBookable";
 
 const routes = [
     { path: '/', component: Bookable , name : "home" },
-    { path: '/bookable/{:slug}', component: Bookable , name : "bookable.show" },
+    { path: '/bookable/:slug', component: ShowBookable , name : "bookable-show" },
 ];
 
 const router = new VueRouter({

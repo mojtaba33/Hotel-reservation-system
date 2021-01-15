@@ -18,6 +18,7 @@ class BookableCollection extends ResourceCollection
             return [
                 'title' => $item->title,
                 'description' => $item->description,
+                'slug' => $item->slug,
             ];
         });
     }
