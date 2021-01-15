@@ -1,6 +1,13 @@
 <template>
     <div>
-        <router-view></router-view>
+        <nav class="navbar border-bottom ">
+            <router-link class="text-dark font-weight-bold" :to="{name:'home'}" >
+                UdemyMaster
+            </router-link>
+        </nav>
+        <div class="container mt-5">
+            <router-view></router-view>
+        </div>
     </div>
 </template>
 

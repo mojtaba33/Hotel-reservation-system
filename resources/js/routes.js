@@ -3,7 +3,7 @@ import VueRouter from 'vue-router';
 import Bookable from "./components/Bookables/Bookable";
 
 const routes = [
-    { path: '/', component: Bookable },
+    { path: '/', component: Bookable , name : "home" },
 ];
 
 const router = new VueRouter({

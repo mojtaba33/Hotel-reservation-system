@@ -1851,6 +1851,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "Index"
 });
@@ -2024,7 +2031,8 @@ __webpack_require__.r(__webpack_exports__);
 
 var routes = [{
   path: '/',
-  component: _components_Bookables_Bookable__WEBPACK_IMPORTED_MODULE_0__.default
+  component: _components_Bookables_Bookable__WEBPACK_IMPORTED_MODULE_0__.default,
+  name: "home"
 }];
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__.default({
   mode: 'history',
@@ -37578,7 +37586,25 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [_c("router-view")], 1)
+  return _c("div", [
+    _c(
+      "nav",
+      { staticClass: "navbar border-bottom " },
+      [
+        _c(
+          "router-link",
+          {
+            staticClass: "text-dark font-weight-bold",
+            attrs: { to: { name: "home" } }
+          },
+          [_vm._v("\n            UdemyMaster\n        ")]
+        )
+      ],
+      1
+    ),
+    _vm._v(" "),
+    _c("div", { staticClass: "container mt-5" }, [_c("router-view")], 1)
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -37603,7 +37629,7 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "container mt-5" }, [
+  return _c("div", [
     _vm.loading
       ? _c("div", { staticClass: "d-flex justify-content-center" }, [_vm._m(0)])
       : _c(
