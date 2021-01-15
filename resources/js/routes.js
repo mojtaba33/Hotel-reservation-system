@@ -1,9 +1,9 @@
 import VueRouter from 'vue-router';
 
-import ExampleComponent from "./components/ExampleComponent";
+import Bookable from "./components/Bookables/Bookable";
 
 const routes = [
-    { path: '/', component: ExampleComponent },
+    { path: '/', component: Bookable },
 ];
 
 const router = new VueRouter({

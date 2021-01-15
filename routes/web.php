@@ -13,6 +13,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 // I want to all routes that not have api prefix go to this route
-Route::get('/{all}', function () {
+Route::get('/{all?}', function () {
     return view('welcome');
 })->where('all','^(?!api\/)[\/\w\.\,-]*');
