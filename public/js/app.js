@@ -1885,32 +1885,13 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      items: [{
-        name: 'davood',
-        lastName: "davoodidavoodidavoodidavoodidavoodidavoodidavoodidavoodidavoodidavoodidavoodidavoodidavoodidavoodidavoodidavoodidavoodidavoodidavoodidavoodi"
-      }, {
-        name: 'davood',
-        lastName: "davoodi"
-      }, {
-        name: 'davood',
-        lastName: "davoodi"
-      }, {
-        name: 'davood',
-        lastName: "davoodi"
-      }, {
-        name: 'davood',
-        lastName: "davoodi"
-      }, {
-        name: 'davood',
-        lastName: "davoodi"
-      }, {
-        name: 'davood',
-        lastName: "davoodi"
-      }, {
-        name: 'd',
-        lastName: "d"
-      }]
+      items: null
     };
+  },
+  created: function created() {
+    axios.get('/api/bookable').then(function (response) {
+      console.log(response);
+    });
   }
 });
 

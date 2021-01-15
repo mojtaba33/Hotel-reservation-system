@@ -14,42 +14,13 @@
             BookableItem
         },
         data : () => ({
-            items : [
-                {
-                    name : 'davood',
-                    lastName : "davoodidavoodidavoodidavoodidavoodidavoodidavoodidavoodidavoodidavoodidavoodidavoodidavoodidavoodidavoodidavoodidavoodidavoodidavoodidavoodi"
-                },
-                {
-                    name : 'davood',
-                    lastName : "davoodi"
-                },
-                {
-                    name : 'davood',
-                    lastName : "davoodi"
-                },
-                {
-                    name : 'davood',
-                    lastName : "davoodi"
-                },
-                {
-                    name : 'davood',
-                    lastName : "davoodi"
-                },
-                {
-                    name : 'davood',
-                    lastName : "davoodi"
-                },
-                {
-                    name : 'davood',
-                    lastName : "davoodi"
-                },
-                {
-                    name : 'd',
-                    lastName : "d"
-                },
-
-            ]
+            items : null,
         }),
+        created(){
+            axios.get('/api/bookable').then(response => {
+                console.log(response);
+            });
+        }
     }
 </script>
 
