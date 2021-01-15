@@ -35,11 +35,11 @@ class BookableController extends Controller
      * Display the specified resource.
      *
      * @param  \App\Models\Bookable  $bookable
-     * @return \Illuminate\Http\Response
+     * @return BookableResource
      */
     public function show(Bookable $bookable)
     {
-        //
+        return new BookableResource(Bookable::findOrFail($bookable));
     }
 
     /**
