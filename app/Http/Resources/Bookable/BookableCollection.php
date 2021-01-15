@@ -16,8 +16,8 @@ class BookableCollection extends ResourceCollection
     {
         return $this->collection->map(function($item){
             return [
-                $item->title,
-                $item->description,
+                'title' => $item->title,
+                'description' => $item->description,
             ];
         });
     }

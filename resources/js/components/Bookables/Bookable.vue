@@ -1,7 +1,12 @@
 <template>
     <div class="container mt-5">
-        <div class="d-flex align-items-stretch flex-wrap ">
-            <BookableItem v-for="(item,index) in items" :key="'item' + index" :item="item"></BookableItem>
+        <div v-if="loading" class="d-flex justify-content-center">
+            <div class="spinner-border " role="status">
+                <span class="visually-hidden"></span>
+            </div>
+        </div>
+        <div v-else class="d-flex align-items-stretch flex-wrap ">
+            <BookableItem v-for="(bookable,index) in bookables" :key="'item' + index" :bookable="bookable"></BookableItem>
         </div>
     </div>
 </template>
@@ -14,11 +19,13 @@
             BookableItem
         },
         data : () => ({
-            items : null,
+            bookables : null,
+            loading : true ,
         }),
         created(){
-            axios.get('/api/bookable').then(response => {
-                console.log(response);
+            axios.get('/api/bookable').then( response => {
+                this.bookables = response.data.data ;
+                this.loading = false ;
             });
         }
     }

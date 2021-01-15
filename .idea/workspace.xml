@@ -2,8 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f45d98b3-5701-468f-a854-20d2502a0125" name="Default Changelist" comment="create Bookable model,migration,controller + add route">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Controllers/api/BookableController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/api/BookableController.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app/Http/Resources/Bookable/BookableCollection.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Resources/Bookable/BookableCollection.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/Bookables/Bookable.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Bookables/Bookable.vue" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/components/Bookables/BookableItem.vue" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/components/Bookables/BookableItem.vue" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -32,7 +36,7 @@
           <entry key="gitignore" value="2" />
           <entry key="js" value="4" />
           <entry key="php" value="20" />
-          <entry key="vue" value="4" />
+          <entry key="vue" value="8" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
@@ -42,7 +46,7 @@
           <entry key="Git file" value="2" />
           <entry key="JavaScript" value="4" />
           <entry key="PHP" value="18" />
-          <entry key="Vue.js" value="4" />
+          <entry key="Vue.js" value="8" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
@@ -50,9 +54,9 @@
           <entry key="env" value="5" />
           <entry key="gitignore" value="6" />
           <entry key="js" value="162" />
-          <entry key="php" value="467" />
+          <entry key="php" value="485" />
           <entry key="txt" value="66" />
-          <entry key="vue" value="604" />
+          <entry key="vue" value="773" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
@@ -61,9 +65,9 @@
           <entry key="Blade" value="60" />
           <entry key="Git file" value="6" />
           <entry key="JavaScript" value="162" />
-          <entry key="PHP" value="407" />
+          <entry key="PHP" value="425" />
           <entry key="PLAIN_TEXT" value="66" />
-          <entry key="Vue.js" value="604" />
+          <entry key="Vue.js" value="773" />
         </counts>
       </usages-collector>
     </session>
@@ -74,19 +78,37 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/app/Http/Resources/Bookable/BookableCollection.php">
+        <entry file="file://$PROJECT_DIR$/resources/js/components/Bookables/Bookable.vue">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="532">
-              <caret line="19" column="34" selection-start-line="19" selection-start-column="34" selection-end-line="19" selection-end-column="34" />
+            <state relative-caret-position="56">
+              <caret line="2" column="19" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
             </state>
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/resources/js/components/Bookables/BookableItem.vue">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="140">
+              <caret line="5" column="60" selection-start-line="5" selection-start-column="60" selection-end-line="5" selection-end-column="60" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/app/Http/Resources/Bookable/BookableCollection.php">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="532">
+              <caret line="19" column="33" selection-start-line="19" selection-start-column="33" selection-end-line="19" selection-end-column="33" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/app/Http/Controllers/api/BookableController.php">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="504">
-              <caret line="19" column="48" selection-start-line="19" selection-start-column="48" selection-end-line="19" selection-end-column="48" />
+              <caret line="19" column="52" selection-start-line="19" selection-start-column="52" selection-end-line="19" selection-end-column="52" />
               <folding>
                 <element signature="e#44#80#0#PHP" expanded="true" />
               </folding>
@@ -99,6 +121,15 @@
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="252">
               <caret line="10" selection-start-line="10" selection-end-line="10" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/resources/js/Index.vue">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="28">
+              <caret line="1" column="9" lean-forward="true" selection-start-line="1" selection-start-column="9" selection-end-line="1" selection-end-column="9" />
             </state>
           </provider>
         </entry>
@@ -125,7 +156,6 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/resources/js/app.js" />
-        <option value="$PROJECT_DIR$/resources/js/Index.vue" />
         <option value="$PROJECT_DIR$/routes/web.php" />
         <option value="$PROJECT_DIR$/resources/js/components/test/child.vue" />
         <option value="$PROJECT_DIR$/resources/js/components/test/parent.vue" />
@@ -133,19 +163,20 @@
         <option value="$PROJECT_DIR$/resources/js/components/test/Parent.vue" />
         <option value="$PROJECT_DIR$/resources/js/components/test/Child.vue" />
         <option value="$PROJECT_DIR$/resources/js/routes.js" />
-        <option value="$PROJECT_DIR$/resources/js/components/Bookables/BookableItem.vue" />
         <option value="$PROJECT_DIR$/database/migrations/2021_01_15_123631_create_bookables_table.php" />
         <option value="$PROJECT_DIR$/config/app.php" />
         <option value="$PROJECT_DIR$/.env" />
         <option value="$PROJECT_DIR$/routes/api.php" />
-        <option value="$PROJECT_DIR$/resources/js/components/Bookables/Bookable.vue" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/database/factories/BookableFactory.php" />
         <option value="$PROJECT_DIR$/database/seeders/BookableSeeder.php" />
         <option value="$PROJECT_DIR$/database/seeders/DatabaseSeeder.php" />
-        <option value="$PROJECT_DIR$/app/Http/Resources/Bookable/BookableCollection.php" />
         <option value="$PROJECT_DIR$/app/Models/Bookable.php" />
+        <option value="$PROJECT_DIR$/resources/js/components/Bookables/BookableItem.vue" />
+        <option value="$PROJECT_DIR$/app/Http/Resources/Bookable/BookableCollection.php" />
         <option value="$PROJECT_DIR$/app/Http/Controllers/api/BookableController.php" />
+        <option value="$PROJECT_DIR$/resources/js/components/Bookables/Bookable.vue" />
+        <option value="$PROJECT_DIR$/resources/js/Index.vue" />
       </list>
     </option>
   </component>
@@ -336,6 +367,32 @@
               <item name="Resources" type="462c0819:PsiDirectoryNode" />
               <item name="Bookable" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="UdemyMaster" type="b2602c69:ProjectViewProjectNode" />
+              <item name="UdemyMaster" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="UdemyMaster" type="b2602c69:ProjectViewProjectNode" />
+              <item name="UdemyMaster" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="UdemyMaster" type="b2602c69:ProjectViewProjectNode" />
+              <item name="UdemyMaster" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="UdemyMaster" type="b2602c69:ProjectViewProjectNode" />
+              <item name="UdemyMaster" type="462c0819:PsiDirectoryNode" />
+              <item name="resources" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+              <item name="components" type="462c0819:PsiDirectoryNode" />
+              <item name="Bookables" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -381,12 +438,12 @@
       <workItem from="1610284995384" duration="5837000" />
       <workItem from="1610367263196" duration="5980000" />
       <workItem from="1610627749309" duration="2338000" />
-      <workItem from="1610712446833" duration="5161000" />
+      <workItem from="1610712446833" duration="6401000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="19316000" />
+    <option name="totallyTimeSpent" value="20556000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -453,24 +510,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/js/Index.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="5" selection-start-line="5" selection-end-line="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/resources/views/welcome.blade.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="196">
           <caret line="7" column="58" selection-start-line="7" selection-start-column="58" selection-end-line="7" selection-end-column="58" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/resources/js/components/Bookables/BookableItem.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="56">
-          <caret line="2" column="30" selection-start-line="2" selection-start-column="30" selection-end-line="2" selection-end-column="30" />
         </state>
       </provider>
     </entry>
@@ -538,13 +581,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/resources/js/components/Bookables/Bookable.vue">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="756">
-          <caret line="27" lean-forward="true" selection-start-line="27" selection-end-line="27" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/routes/api.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="532">
@@ -585,7 +621,17 @@
     <entry file="file://$PROJECT_DIR$/app/Http/Resources/Bookable/BookableCollection.php">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="532">
-          <caret line="19" column="34" selection-start-line="19" selection-start-column="34" selection-end-line="19" selection-end-column="34" />
+          <caret line="19" column="33" selection-start-line="19" selection-start-column="33" selection-end-line="19" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/api/BookableController.php">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="504">
+          <caret line="19" column="52" selection-start-line="19" selection-start-column="52" selection-end-line="19" selection-end-column="52" />
+          <folding>
+            <element signature="e#44#80#0#PHP" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -596,13 +642,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/app/Http/Controllers/api/BookableController.php">
+    <entry file="file://$PROJECT_DIR$/resources/js/components/Bookables/BookableItem.vue">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="504">
-          <caret line="19" column="48" selection-start-line="19" selection-start-column="48" selection-end-line="19" selection-end-column="48" />
-          <folding>
-            <element signature="e#44#80#0#PHP" expanded="true" />
-          </folding>
+        <state relative-caret-position="140">
+          <caret line="5" column="60" selection-start-line="5" selection-start-column="60" selection-end-line="5" selection-end-column="60" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/components/Bookables/Bookable.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="56">
+          <caret line="2" column="19" selection-start-line="2" selection-start-column="19" selection-end-line="2" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/resources/js/Index.vue">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="28">
+          <caret line="1" column="9" lean-forward="true" selection-start-line="1" selection-start-column="9" selection-end-line="1" selection-end-column="9" />
         </state>
       </provider>
     </entry>

@@ -17,7 +17,7 @@ class BookableController extends Controller
      */
     public function index()
     {
-        return new BookableCollection(Bookable::paginate(14));
+        return new BookableCollection(Bookable::all());
     }
 
     /**

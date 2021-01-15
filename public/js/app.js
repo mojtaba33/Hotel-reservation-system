@@ -1877,6 +1877,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "Bookable",
@@ -1885,12 +1890,16 @@ __webpack_require__.r(__webpack_exports__);
   },
   data: function data() {
     return {
-      items: null
+      bookables: null,
+      loading: true
     };
   },
   created: function created() {
+    var _this = this;
+
     axios.get('/api/bookable').then(function (response) {
-      console.log(response);
+      _this.bookables = response.data.data;
+      _this.loading = false;
     });
   }
 });
@@ -1921,7 +1930,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "BookableItem",
-  props: ['item']
+  props: ['bookable']
 });
 
 /***/ }),
@@ -37595,20 +37604,33 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "container mt-5" }, [
-    _c(
-      "div",
-      { staticClass: "d-flex align-items-stretch flex-wrap " },
-      _vm._l(_vm.items, function(item, index) {
-        return _c("BookableItem", {
-          key: "item" + index,
-          attrs: { item: item }
-        })
-      }),
-      1
-    )
+    _vm.loading
+      ? _c("div", { staticClass: "d-flex justify-content-center" }, [_vm._m(0)])
+      : _c(
+          "div",
+          { staticClass: "d-flex align-items-stretch flex-wrap " },
+          _vm._l(_vm.bookables, function(bookable, index) {
+            return _c("BookableItem", {
+              key: "item" + index,
+              attrs: { bookable: bookable }
+            })
+          }),
+          1
+        )
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "spinner-border ", attrs: { role: "status" } },
+      [_c("span", { staticClass: "visually-hidden" })]
+    )
+  }
+]
 render._withStripped = true
 
 
@@ -37635,11 +37657,11 @@ var render = function() {
     _c("div", { staticClass: "card h-100" }, [
       _c("div", { staticClass: "card-body" }, [
         _c("h5", { staticClass: "card-title" }, [
-          _vm._v(_vm._s(_vm.item.name))
+          _vm._v(_vm._s(_vm.bookable.title))
         ]),
         _vm._v(" "),
         _c("p", { staticClass: "card-text" }, [
-          _vm._v(_vm._s(_vm.item.lastName))
+          _vm._v(_vm._s(_vm.bookable.description))
         ])
       ])
     ])
