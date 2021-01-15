@@ -4,6 +4,7 @@ namespace App\Http\Controllers\api;
 
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Bookable\Bookable as BookableResource;
+use App\Http\Resources\Bookable\BookableCollection;
 use App\Models\Bookable;
 use Illuminate\Http\Request;
 
@@ -12,11 +13,11 @@ class BookableController extends Controller
     /**
      * Display a listing of the resource.
      *
-     * @return \Illuminate\Http\Response
+     * @return BookableCollection
      */
     public function index()
     {
-        return new BookableResource(Bookable::all());
+        return new BookableCollection(Bookable::paginate(14));
     }
 
     /**
