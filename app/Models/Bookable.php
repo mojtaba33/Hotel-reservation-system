@@ -24,4 +24,10 @@ class Bookable extends Model
     {
         return 'slug';
     }
+
+    public function bookings()
+    {
+        return $this->hasMany(Booking::class);
+    }
+
 }
