@@ -6,18 +6,24 @@
             </div>
         </div>
         <div v-else class="row">
-            <div class="col-md-8">
+            <div class="col-md-8  border-right pb-4">
                 <h1>{{ bookable.title }}</h1>
                 <p>{{ bookable.description }}</p>
             </div>
-            <div class="col-md-4">xx</div>
+            <div class="col-md-4">
+                <availability></availability>
+            </div>
         </div>
     </div>
 </template>
 
 <script>
+    import availability from './Availability';
     export default {
         name: "ShowBookable",
+        components : {
+            availability
+        },
         data : () =>  ({
             bookable : null,
             loading : true,

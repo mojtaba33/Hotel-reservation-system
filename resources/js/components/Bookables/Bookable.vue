@@ -6,7 +6,8 @@
             </div>
         </div>
         <div v-else class="d-flex align-items-stretch flex-wrap ">
-            <BookableItem v-for="(bookable,index) in bookables" :key="'item' + index" :bookable="bookable"></BookableItem>
+            <div v-if="error" class="text-danger text-center col">{{ error }}</div>
+            <BookableItem v-else v-for="(bookable,index) in bookables" :key="'item' + index" :bookable="bookable"></BookableItem>
         </div>
     </div>
 </template>
@@ -21,10 +22,15 @@
         data : () => ({
             bookables : null,
             loading : true ,
+            error : null ,
         }),
         created(){
-            axios.get('/api/bookable').then( response => {
-                this.bookables = response.data.data ;
+            this.error = null ;
+            axios.get('/api/bookable')
+            .then( response => this.bookables = response.data.data
+            ).catch(error => {
+                this.error = 'something went wrong!';
+            }).then(() => {
                 this.loading = false ;
             });
         }
