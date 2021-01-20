@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\api\BookableController;
+use App\Http\Controllers\api\CheckBookingAvailability;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -18,5 +19,5 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
-Route::get('bookable/test/{bookable:slug}',[BookableController::class,'test']);
+Route::get('bookable/{bookable}/availability',[CheckBookingAvailability::class]);
 Route::apiResource('bookable', BookableController::class);
