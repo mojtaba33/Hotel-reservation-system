@@ -1896,13 +1896,62 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "Availability",
   data: function data() {
     return {
       from: null,
-      to: null
+      to: null,
+      is_available: null,
+      errors: null,
+      disabled: false
     };
+  },
+  computed: {
+    fromError: function fromError() {
+      if (this.errors) {
+        return this.errors.from;
+      }
+    }
+  },
+  methods: {
+    check: function check() {
+      var _this = this;
+
+      var slug = this.$route.params.slug;
+      this.disabled = true;
+      this.errors = null;
+      this.is_available = null;
+      axios.get("/api/bookable/".concat(slug, "/availability/"), {
+        params: {
+          'from': this.from,
+          'to': this.to
+        }
+      }).then(function (response) {
+        _this.is_available = response.data.data.is_available;
+      })["catch"](function (error) {
+        if (error.response.status === 422) {
+          _this.errors = error.response.data.errors;
+        }
+      }).then(function () {
+        return _this.disabled = false;
+      });
+    }
   }
 });
 
@@ -37890,7 +37939,28 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c("h5", { staticClass: "text-dark mb-3" }, [_vm._v("Availability : ")]),
+    _c("h5", { staticClass: "text-dark mb-3" }, [
+      _vm._v("Check Availability\n        "),
+      _vm.is_available === true
+        ? _c(
+            "span",
+            {
+              staticClass: "text-success",
+              staticStyle: { "font-size": "14px" }
+            },
+            [_vm._v(" ( Available ) ")]
+          )
+        : _vm.is_available === false
+        ? _c(
+            "span",
+            {
+              staticClass: "text-danger",
+              staticStyle: { "font-size": "14px" }
+            },
+            [_vm._v(" ( Not Available ) ")]
+          )
+        : _vm._e()
+    ]),
     _vm._v(" "),
     _c("form", [
       _c("div", { staticClass: "row" }, [
@@ -37924,7 +37994,30 @@ var render = function() {
                 _vm.from = $event.target.value
               }
             }
-          })
+          }),
+          _vm._v(" "),
+          _vm.errors
+            ? _c(
+                "div",
+                _vm._l(_vm.errors.from, function(error, i) {
+                  return _c(
+                    "div",
+                    {
+                      key: "fe" + i,
+                      staticClass: "text-danger font-weight-light"
+                    },
+                    [
+                      _vm._v(
+                        "\n                        " +
+                          _vm._s(error) +
+                          "\n                    "
+                      )
+                    ]
+                  )
+                }),
+                0
+              )
+            : _vm._e()
         ]),
         _vm._v(" "),
         _c("div", { staticClass: "col-6 form-group" }, [
@@ -37957,26 +38050,63 @@ var render = function() {
                 _vm.to = $event.target.value
               }
             }
-          })
+          }),
+          _vm._v(" "),
+          _vm.errors
+            ? _c(
+                "div",
+                _vm._l(_vm.errors.to, function(error, i) {
+                  return _vm.errors
+                    ? _c(
+                        "div",
+                        {
+                          key: "te" + i,
+                          staticClass: "text-danger font-weight-light"
+                        },
+                        [
+                          _vm._v(
+                            "\n                        " +
+                              _vm._s(error) +
+                              "\n                    "
+                          )
+                        ]
+                      )
+                    : _vm._e()
+                }),
+                0
+              )
+            : _vm._e()
         ]),
         _vm._v(" "),
-        _vm._m(0)
+        _c("div", { staticClass: "col form-group" }, [
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-dark w-100 text-uppercase",
+              attrs: { disabled: _vm.disabled },
+              on: {
+                click: function($event) {
+                  $event.preventDefault()
+                  return _vm.check($event)
+                }
+              }
+            },
+            [
+              _vm._v("check\n                    "),
+              _vm.disabled
+                ? _c("span", {
+                    staticClass: "spinner-border spinner-border-sm",
+                    attrs: { role: "status", "aria-hidden": "true" }
+                  })
+                : _vm._e()
+            ]
+          )
+        ])
       ])
     ])
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "col form-group" }, [
-      _c("button", { staticClass: "btn btn-dark w-100 text-uppercase" }, [
-        _vm._v("check")
-      ])
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
