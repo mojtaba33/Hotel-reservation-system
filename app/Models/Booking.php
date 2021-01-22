@@ -15,4 +15,9 @@ class Booking extends Model
     {
         return $this->belongsTo(Bookable::class);
     }
+
+    public function review()
+    {
+        return $this->hasOne(Review::class);
+    }
 }
