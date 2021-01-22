@@ -2,9 +2,6 @@
 
 namespace Database\Seeders;
 
-use App\Models\Booking;
-use Carbon\Carbon;
-use Illuminate\Database\Eloquent\Factories\Sequence;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -18,5 +15,6 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(BookableSeeder::class);
         $this->call(BookingSeeder::class);
+        $this->call(ReviewSeeder::class);
     }
 }
