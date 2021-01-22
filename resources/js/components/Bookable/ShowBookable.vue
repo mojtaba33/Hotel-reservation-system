@@ -5,10 +5,13 @@
                 <span class="visually-hidden"></span>
             </div>
         </div>
-        <div v-else class="row">
+        <div v-else class="row mb-5">
             <div class="col-md-8  border-right pb-4">
-                <h1>{{ bookable.title }}</h1>
-                <p>{{ bookable.description }}</p>
+                <div class="pb-4">
+                    <h1>{{ bookable.title }}</h1>
+                    <p>{{ bookable.description }}</p>
+                </div>
+                <review-list></review-list>
             </div>
             <div class="col-md-4">
                 <availability></availability>
@@ -18,11 +21,13 @@
 </template>
 
 <script>
-    import availability from './Availability';
+    import Availability from './Availability';
+    import ReviewList from './ReviewList';
+
     export default {
         name: "ShowBookable",
         components : {
-            availability
+            Availability,ReviewList
         },
         data : () =>  ({
             bookable : null,

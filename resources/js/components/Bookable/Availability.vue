@@ -7,21 +7,17 @@
         <form>
             <div class="row">
                 <div class="col-6 form-group">
-                    <label for="from" class="form-check-label text-secondary text-uppercase">from</label>
-                    <input type="text" v-model="from" id="from" class="form-control form-control-sm">
-                    <div v-if="errors">
-                        <div  v-for="(error,i) in errors.from" :key="'fe'+i" class="text-danger font-weight-light">
-                            {{ error }}
-                        </div>
+                    <label for="from" class="form-check-label text-secondary text-uppercase" style="font-size: 12px">from</label>
+                    <input type="text" v-model="from" id="from" class="form-control form-control-sm" :class="{ 'input-error' : fromError }">
+                    <div  v-for="(error,i) in fromError" :key="'fe'+i" class="text-danger font-weight-light">
+                        {{ error }}
                     </div>
                 </div>
                 <div class="col-6 form-group">
-                    <label for="to" class="form-check-label text-secondary text-uppercase">to</label>
-                    <input type="text" v-model="to" id="to" class="form-control form-control-sm">
-                    <div v-if="errors">
-                        <div v-if="errors" v-for="(error,i) in errors.to" :key="'te'+i" class="text-danger font-weight-light">
-                            {{ error }}
-                        </div>
+                    <label for="to" class="form-check-label text-secondary text-uppercase" style="font-size: 12px">to</label>
+                    <input type="text" v-model="to" id="to" class="form-control form-control-sm" :class="{ 'input-error' : toError }">
+                    <div v-if="errors" v-for="(error,i) in toError" :key="'te'+i" class="text-danger font-weight-light" >
+                        {{ error }}
                     </div>
                 </div>
                 <div class="col form-group">
@@ -51,7 +47,14 @@
                 {
                     return this.errors.from
                 }
-            }
+            },
+            toError()
+            {
+                if (this.errors)
+                {
+                    return this.errors.to
+                }
+            },
         },
         methods:{
             check()
@@ -80,5 +83,7 @@
 </script>
 
 <style scoped>
-
+    .input-error {
+        border-color: #e3342f !important;
+    }
 </style>
