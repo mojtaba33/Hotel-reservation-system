@@ -25,3 +25,4 @@ Route::apiResource('bookable', BookableController::class);
 Route::get('bookable/{bookable:slug}/availability',CheckBookingAvailability::class);
 
 Route::get('bookable/{bookable:slug}/review', [ReviewController::class,'index']);
+Route::get('review/{review}', [ReviewController::class,'show']);

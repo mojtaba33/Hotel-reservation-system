@@ -5,6 +5,8 @@ namespace App\Http\Controllers\api;
 use App\Http\Controllers\Controller;
 use App\Http\Resources\Review\ReviewCollection;
 use App\Models\Bookable;
+use App\Models\Review;
+use App\Http\Resources\Review\Review as ReviewResource;
 
 class ReviewController extends Controller
 {
@@ -17,5 +19,10 @@ class ReviewController extends Controller
     public function index(Bookable $bookable)
     {
         return new ReviewCollection($bookable->reviews()->latest()->get());
+    }
+
+    public function show(Review $review)
+    {
+        return new ReviewResource($review);
     }
 }
