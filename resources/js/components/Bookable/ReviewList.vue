@@ -8,7 +8,7 @@
                         davood
                     </div>
                     <div class="col d-flex justify-content-end">
-                        <star-rating :rating="review.rating"></star-rating>
+                        <star-rating :value="review.rating"></star-rating>
                     </div>
                 </div>
                 <div class="row">
@@ -24,7 +24,7 @@
                 there are no reviews!
             </div>
         </div>
-        <div v-else>
+        <div v-else class="d-flex justify-content-center">
             <div class="spinner-border " role="status">
                 <span class="visually-hidden"></span>
             </div>
