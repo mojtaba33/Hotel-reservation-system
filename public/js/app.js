@@ -60751,7 +60751,7 @@ var staticRenderFns = [
       _vm._v(" "),
       _c("textarea", {
         staticClass: "form-control",
-        attrs: { id: "content", cols: "30", rows: "10" }
+        attrs: { id: "content", rows: "10" }
       })
     ])
   },

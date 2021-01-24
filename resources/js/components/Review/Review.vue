@@ -6,7 +6,7 @@
         </div>
         <div class="form-group">
             <label for="content">describe your experience : </label>
-            <textarea class="form-control" id="content" cols="30" rows="10"></textarea>
+            <textarea class="form-control" id="content" rows="10"></textarea>
         </div>
         <div class="form-group d-flex justify-content-end">
             <button class="btn btn-primary">submit</button>
