@@ -2214,12 +2214,23 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "Review",
   data: function data() {
     return {
       value: 5,
       review: null,
+      booking: null,
       loading: true
     };
   },
@@ -2229,9 +2240,20 @@ __webpack_require__.r(__webpack_exports__);
     var id = this.$route.params.id;
     axios.get("/api/review/".concat(id)).then(function (response) {
       _this.review = response.data.data;
-    })["catch"](function (error) {}).then(function () {
+    })["catch"](function (error) {
+      if (error.response.status === 404) {
+        axios.get("/api/booking/".concat(id)).then(function (response) {
+          _this.booking = response.data.data;
+        })["catch"](function (error) {});
+      }
+    }).then(function () {
       _this.loading = false;
     });
+  },
+  computed: {
+    reviewExist: function reviewExist() {
+      return this.review !== null || this.booking === null;
+    }
   }
 });
 
@@ -60741,34 +60763,74 @@ var render = function() {
     _vm.loading
       ? _c("div", { staticClass: "d-flex justify-content-center" }, [_vm._m(0)])
       : _c("div", [
-          _vm.review == null
+          _vm.reviewExist
             ? _c("div", [
-                _c(
-                  "div",
-                  { staticClass: "form-group" },
-                  [
-                    _c("label", [_vm._v("rating : ")]),
-                    _vm._v(" "),
-                    _c("star-rating", {
-                      staticClass: "fa-2x",
-                      model: {
-                        value: _vm.value,
-                        callback: function($$v) {
-                          _vm.value = $$v
-                        },
-                        expression: "value"
-                      }
-                    })
-                  ],
-                  1
-                ),
-                _vm._v(" "),
-                _vm._m(1),
-                _vm._v(" "),
-                _vm._m(2)
+                _c("h3", { staticClass: "text-secondary font-weight-bolder" }, [
+                  _vm._v("You've already left a review for this booking!")
+                ])
               ])
-            : _c("div", { staticClass: "text-secondary font-weight-bolder" }, [
-                _vm._v("\n            you have already post a review\n        ")
+            : _c("div", [
+                _c("div", { staticClass: "row" }, [
+                  _c("div", { staticClass: "col-md-4" }, [
+                    _c(
+                      "h5",
+                      [
+                        _vm._v("stayed at\n                        "),
+                        _c(
+                          "router-link",
+                          {
+                            attrs: {
+                              to: {
+                                name: "bookable-show",
+                                params: { slug: _vm.booking.bookable.slug }
+                              }
+                            }
+                          },
+                          [_vm._v(_vm._s(_vm.booking.bookable.title))]
+                        )
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _c("p", { staticClass: "text-secondary" }, [
+                      _vm._v(
+                        "From " +
+                          _vm._s(_vm.booking.from) +
+                          " To " +
+                          _vm._s(_vm.booking.to) +
+                          " "
+                      )
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "col-md-8" }, [
+                    _c(
+                      "div",
+                      { staticClass: "form-group " },
+                      [
+                        _c("label", { staticClass: "col-form-label" }, [
+                          _vm._v("Select the star rating : ")
+                        ]),
+                        _vm._v(" "),
+                        _c("star-rating", {
+                          staticClass: "fa-2x",
+                          model: {
+                            value: _vm.value,
+                            callback: function($$v) {
+                              _vm.value = $$v
+                            },
+                            expression: "value"
+                          }
+                        })
+                      ],
+                      1
+                    ),
+                    _vm._v(" "),
+                    _vm._m(1),
+                    _vm._v(" "),
+                    _vm._m(2)
+                  ])
+                ])
               ])
         ])
   ])
@@ -60788,10 +60850,12 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group" }, [
-      _c("label", { attrs: { for: "content" } }, [
-        _vm._v("describe your experience : ")
-      ]),
+    return _c("div", { staticClass: "form-group " }, [
+      _c(
+        "label",
+        { staticClass: "col-form-label", attrs: { for: "content" } },
+        [_vm._v("describe your experience : ")]
+      ),
       _vm._v(" "),
       _c("textarea", {
         staticClass: "form-control",
