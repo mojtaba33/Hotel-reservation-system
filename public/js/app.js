@@ -2202,12 +2202,36 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "Review",
   data: function data() {
     return {
-      value: 5
+      value: 5,
+      review: null,
+      loading: true
     };
+  },
+  created: function created() {
+    var _this = this;
+
+    var id = this.$route.params.id;
+    axios.get("/api/review/".concat(id)).then(function (response) {
+      _this.review = response.data.data;
+    })["catch"](function (error) {}).then(function () {
+      _this.loading = false;
+    });
   }
 });
 
@@ -60714,32 +60738,52 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _c(
-      "div",
-      { staticClass: "form-group" },
-      [
-        _c("label", [_vm._v("rating : ")]),
-        _vm._v(" "),
-        _c("star-rating", {
-          staticClass: "fa-2x",
-          model: {
-            value: _vm.value,
-            callback: function($$v) {
-              _vm.value = $$v
-            },
-            expression: "value"
-          }
-        })
-      ],
-      1
-    ),
-    _vm._v(" "),
-    _vm._m(0),
-    _vm._v(" "),
-    _vm._m(1)
+    _vm.loading
+      ? _c("div", { staticClass: "d-flex justify-content-center" }, [_vm._m(0)])
+      : _c("div", [
+          _vm.review == null
+            ? _c("div", [
+                _c(
+                  "div",
+                  { staticClass: "form-group" },
+                  [
+                    _c("label", [_vm._v("rating : ")]),
+                    _vm._v(" "),
+                    _c("star-rating", {
+                      staticClass: "fa-2x",
+                      model: {
+                        value: _vm.value,
+                        callback: function($$v) {
+                          _vm.value = $$v
+                        },
+                        expression: "value"
+                      }
+                    })
+                  ],
+                  1
+                ),
+                _vm._v(" "),
+                _vm._m(1),
+                _vm._v(" "),
+                _vm._m(2)
+              ])
+            : _c("div", { staticClass: "text-secondary font-weight-bolder" }, [
+                _vm._v("\n            you have already post a review\n        ")
+              ])
+        ])
   ])
 }
 var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "spinner-border ", attrs: { role: "status" } },
+      [_c("span", { staticClass: "visually-hidden" })]
+    )
+  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
