@@ -27,10 +27,10 @@
 </template>
 
 <script>
-    import validationErrorMixin from './../global/mixins/FatalError';
+    import ValidationErrorMixin from '../global/mixins/ValidationError';
     export default {
         name: "Availability",
-        mixins : [validationErrorMixin],
+        mixins : [ValidationErrorMixin],
         data:() => ({
             from : null ,
             to : null ,

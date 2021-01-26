@@ -48,10 +48,10 @@
 </template>
 
 <script>
-    import validationErrorMixin from './../global/mixins/FatalError';
+    import ValidationErrorMixin from '../global/mixins/ValidationError';
     export default {
         name: "Review" ,
-        mixins : [validationErrorMixin],
+        mixins : [ValidationErrorMixin],
         data : () => ({
             value : 5 ,
             content : null,
@@ -63,21 +63,25 @@
             loading : true ,
             disabled : false ,
         }),
-        created()
+        async created()
         {
             this.id = this.$route.params.id;
-            axios.get(`/api/review/${this.id}`).then(response => {
-                this.review = response.data.data;
-            }).catch(error => {
-                if( error.response.status === 404 )
+            try {
+                this.review = (await axios.get(`/api/review/${this.id}`)).data.data;
+            }catch (e) {
+                if( e.response.status === 404 )
                 {
-                    axios.get(`/api/booking/${this.id}`).then(response => {
-                        this.booking = response.data.data;
-                    }).catch(error => {})
+                    try{
+                        this.booking = (await  axios.get(`/api/booking/${this.id}`)).data.data;
+                    }catch (e) {
+                        this.fatalError = true ;
+                    }
+                }else{
+                    this.fatalError = true ;
                 }
-            }).then(() => {
-                this.loading = false;
-            });
+            }
+
+            this.loading = false;
         },
         methods:{
             store()
