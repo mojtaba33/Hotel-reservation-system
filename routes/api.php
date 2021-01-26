@@ -27,4 +27,5 @@ Route::get('bookable/{bookable:slug}/availability',CheckBookingAvailability::cla
 
 Route::get('bookable/{bookable:slug}/review', [ReviewController::class,'index']);
 Route::get('review/{review}', [ReviewController::class,'show']);
+Route::post('review', [ReviewController::class,'store']);
 Route::get('booking/{booking:review_key}', ShowBookingByReviewKeyController::class);

@@ -8,9 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Review extends Model
 {
-    use HasFactory , UsesUuid;
+    use HasFactory;
 
-    protected $fillable = ['content','rating','bookable_id','booking_id'];
+    protected $fillable = ['id','content','rating','bookable_id','booking_id'];
 
     public function booking()
     {
@@ -20,5 +20,15 @@ class Review extends Model
     public function bookable()
     {
         return $this->belongsTo(Bookable::class);
+    }
+
+    public function getIncrementing()
+    {
+        return false;
+    }
+
+    public function getKeyType()
+    {
+        return 'string';
     }
 }

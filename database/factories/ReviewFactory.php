@@ -4,6 +4,7 @@ namespace Database\Factories;
 
 use App\Models\Review;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Illuminate\Support\Str;
 
 class ReviewFactory extends Factory
 {
@@ -23,6 +24,7 @@ class ReviewFactory extends Factory
     public function definition()
     {
         return [
+            'id' => Str::uuid(),
             'content' => $this->faker->text,
             'rating' => random_int(1,5),
         ];

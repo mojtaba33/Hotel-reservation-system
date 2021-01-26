@@ -17,10 +17,15 @@ class ReviewSeeder extends Seeder
     public function run()
     {
         Bookable::all()->each( function (Bookable $bookable){
-            $bookable->bookings()->each( function (Booking $booking) use ($bookable) {
+            $count = $bookable->bookings()->count();
+            $bookable->bookings->random(intval($count/2))
+                ->map( function (Booking $booking) use ($bookable) {
                 $review = Review::factory()->make([
-                    'bookable_id' => $bookable->id
+                    'bookable_id' => $bookable->id,
+                    'id' => $booking->review_key,
                 ]);
+                $booking->review_key = null;
+                $booking->save();
                 $booking->review()->save($review);
             });
         });
