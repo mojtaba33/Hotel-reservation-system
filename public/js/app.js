@@ -1875,6 +1875,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
 /* harmony export */ });
+/* harmony import */ var _global_mixins_FatalError__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../global/mixins/FatalError */ "./resources/js/components/global/mixins/FatalError.js");
 //
 //
 //
@@ -1903,32 +1904,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "Availability",
+  mixins: [_global_mixins_FatalError__WEBPACK_IMPORTED_MODULE_0__.default],
   data: function data() {
     return {
       from: null,
       to: null,
       is_available: null,
-      errors: null,
       disabled: false
     };
-  },
-  computed: {
-    fromError: function fromError() {
-      if (this.errors) {
-        return this.errors.from;
-      }
-    },
-    toError: function toError() {
-      if (this.errors) {
-        return this.errors.to;
-      }
-    }
   },
   methods: {
     check: function check() {
@@ -1936,7 +1922,7 @@ __webpack_require__.r(__webpack_exports__);
 
       var slug = this.$route.params.slug;
       this.disabled = true;
-      this.errors = null;
+      this.validationErrors = null;
       this.is_available = null;
       axios.get("/api/bookable/".concat(slug, "/availability/"), {
         params: {
@@ -1947,7 +1933,7 @@ __webpack_require__.r(__webpack_exports__);
         _this.is_available = response.data.data.is_available;
       })["catch"](function (error) {
         if (error.response.status === 422) {
-          _this.errors = error.response.data.errors;
+          _this.validationErrors = error.response.data.errors;
         }
       }).then(function () {
         return _this.disabled = false;
@@ -2186,6 +2172,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
 /* harmony export */ });
+/* harmony import */ var _global_mixins_FatalError__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./../global/mixins/FatalError */ "./resources/js/components/global/mixins/FatalError.js");
 //
 //
 //
@@ -2235,8 +2222,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "Review",
+  mixins: [_global_mixins_FatalError__WEBPACK_IMPORTED_MODULE_0__.default],
   data: function data() {
     return {
       value: 5,
@@ -2245,7 +2234,6 @@ __webpack_require__.r(__webpack_exports__);
       review: null,
       booking: null,
       success: false,
-      validationErrors: null,
       fatalError: false,
       loading: true,
       disabled: false
@@ -2290,9 +2278,6 @@ __webpack_require__.r(__webpack_exports__);
       }).then(function () {
         return _this2.disabled = false;
       });
-    },
-    getValidationErrors: function getValidationErrors(name) {
-      return this.validationErrors !== null && this.validationErrors[name] !== null ? this.validationErrors[name] : null;
     }
   },
   computed: {
@@ -2504,6 +2489,32 @@ window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 //     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
 //     forceTLS: true
 // });
+
+/***/ }),
+
+/***/ "./resources/js/components/global/mixins/FatalError.js":
+/*!*************************************************************!*\
+  !*** ./resources/js/components/global/mixins/FatalError.js ***!
+  \*************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => __WEBPACK_DEFAULT_EXPORT__
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  data: function data() {
+    return {
+      validationErrors: null
+    };
+  },
+  methods: {
+    getValidationErrors: function getValidationErrors(name) {
+      return this.validationErrors !== null && this.validationErrors[name] !== null ? this.validationErrors[name] : null;
+    }
+  }
+});
 
 /***/ }),
 
@@ -60687,7 +60698,7 @@ var render = function() {
                 }
               ],
               staticClass: "form-control form-control-sm",
-              class: { "input-error": _vm.fromError },
+              class: { "input-error": _vm.getValidationErrors("from") },
               attrs: { type: "text", id: "from" },
               domProps: { value: _vm.from },
               on: {
@@ -60700,21 +60711,11 @@ var render = function() {
               }
             }),
             _vm._v(" "),
-            _vm._l(_vm.fromError, function(error, i) {
-              return _c(
-                "div",
-                { key: "fe" + i, staticClass: "text-danger font-weight-light" },
-                [
-                  _vm._v(
-                    "\n                    " +
-                      _vm._s(error) +
-                      "\n                "
-                  )
-                ]
-              )
+            _c("validation-errors", {
+              attrs: { errors: _vm.getValidationErrors("from") }
             })
           ],
-          2
+          1
         ),
         _vm._v(" "),
         _c(
@@ -60741,7 +60742,7 @@ var render = function() {
                 }
               ],
               staticClass: "form-control form-control-sm",
-              class: { "input-error": _vm.toError },
+              class: { "input-error": _vm.getValidationErrors("to") },
               attrs: { type: "text", id: "to" },
               domProps: { value: _vm.to },
               on: {
@@ -60754,26 +60755,11 @@ var render = function() {
               }
             }),
             _vm._v(" "),
-            _vm._l(_vm.toError, function(error, i) {
-              return _vm.errors
-                ? _c(
-                    "div",
-                    {
-                      key: "te" + i,
-                      staticClass: "text-danger font-weight-light"
-                    },
-                    [
-                      _vm._v(
-                        "\n                    " +
-                          _vm._s(error) +
-                          "\n                "
-                      )
-                    ]
-                  )
-                : _vm._e()
+            _c("validation-errors", {
+              attrs: { errors: _vm.getValidationErrors("to") }
             })
           ],
-          2
+          1
         ),
         _vm._v(" "),
         _c("div", { staticClass: "col form-group" }, [

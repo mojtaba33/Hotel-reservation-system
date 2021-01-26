@@ -8,17 +8,13 @@
             <div class="row">
                 <div class="col-6 form-group">
                     <label for="from" class="form-check-label text-secondary text-uppercase" style="font-size: 12px">from</label>
-                    <input type="text" v-model="from" id="from" class="form-control form-control-sm" :class="{ 'input-error' : fromError }">
-                    <div  v-for="(error,i) in fromError" :key="'fe'+i" class="text-danger font-weight-light">
-                        {{ error }}
-                    </div>
+                    <input type="text" v-model="from" id="from" class="form-control form-control-sm" :class="{ 'input-error' : getValidationErrors('from') }">
+                    <validation-errors :errors="getValidationErrors('from')"></validation-errors>
                 </div>
                 <div class="col-6 form-group">
                     <label for="to" class="form-check-label text-secondary text-uppercase" style="font-size: 12px">to</label>
-                    <input type="text" v-model="to" id="to" class="form-control form-control-sm" :class="{ 'input-error' : toError }">
-                    <div v-if="errors" v-for="(error,i) in toError" :key="'te'+i" class="text-danger font-weight-light" >
-                        {{ error }}
-                    </div>
+                    <input type="text" v-model="to" id="to" class="form-control form-control-sm" :class="{ 'input-error' : getValidationErrors('to') }">
+                    <validation-errors :errors="getValidationErrors('to')"></validation-errors>
                 </div>
                 <div class="col form-group">
                     <button class="btn btn-dark w-100 text-uppercase" @click.prevent="check" :disabled="disabled">check
@@ -31,37 +27,22 @@
 </template>
 
 <script>
+    import validationErrorMixin from './../global/mixins/FatalError';
     export default {
         name: "Availability",
+        mixins : [validationErrorMixin],
         data:() => ({
             from : null ,
             to : null ,
             is_available : null,
-            errors : null,
             disabled : false
         }),
-        computed:{
-            fromError()
-            {
-                if (this.errors)
-                {
-                    return this.errors.from
-                }
-            },
-            toError()
-            {
-                if (this.errors)
-                {
-                    return this.errors.to
-                }
-            },
-        },
         methods:{
             check()
             {
                 let slug = this.$route.params.slug;
                 this.disabled = true;
-                this.errors = null ;
+                this.validationErrors = null ;
                 this.is_available = null ;
 
                 axios.get(`/api/bookable/${slug}/availability/`,{
@@ -74,7 +55,7 @@
                 }).catch(error => {
                     if ( error.response.status === 422 )
                     {
-                        this.errors = error.response.data.errors ;
+                        this.validationErrors = error.response.data.errors ;
                     }
                 }).then(() => this.disabled = false);
             }

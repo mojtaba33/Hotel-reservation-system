@@ -48,8 +48,10 @@
 </template>
 
 <script>
+    import validationErrorMixin from './../global/mixins/FatalError';
     export default {
         name: "Review" ,
+        mixins : [validationErrorMixin],
         data : () => ({
             value : 5 ,
             content : null,
@@ -57,7 +59,6 @@
             review : null ,
             booking : null ,
             success : false,
-            validationErrors : null,
             fatalError : false,
             loading : true ,
             disabled : false ,
@@ -103,12 +104,6 @@
                             : this.fatalError = true;
                     }
                 }).then(()=>this.disabled = false);
-            },
-            getValidationErrors(name)
-            {
-                return this.validationErrors !== null && this.validationErrors[name] !== null
-                    ? this.validationErrors[name]
-                    : null ;
             }
         },
         computed:{
