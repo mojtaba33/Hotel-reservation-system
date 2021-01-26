@@ -5,7 +5,8 @@
                 your review registered successfully
             </success>
         </div>
-        <div v-else>
+        <fatal-error v-if="fatalError"></fatal-error>
+        <div v-if="!fatalError && !success">
             <div v-if="loading" class="d-flex justify-content-center">
                 <div class="spinner-border " role="status">
                     <span class="visually-hidden"></span>
