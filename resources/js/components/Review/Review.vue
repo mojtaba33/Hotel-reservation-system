@@ -1,33 +1,43 @@
 <template>
     <div>
-        <div v-if="loading" class="d-flex justify-content-center">
-            <div class="spinner-border " role="status">
-                <span class="visually-hidden"></span>
-            </div>
+        <div v-if="success">
+            <success>
+                your review registered successfully
+            </success>
         </div>
         <div v-else>
-            <div v-if="reviewExist">
-                <h3  class="text-secondary font-weight-bolder">You've already left a review for this booking!</h3>
+            <div v-if="loading" class="d-flex justify-content-center">
+                <div class="spinner-border " role="status">
+                    <span class="visually-hidden"></span>
+                </div>
             </div>
             <div v-else>
-                <div class="row">
-                    <div class="col-md-4">
-                        <h5>stayed at
-                            <router-link :to="{name:'bookable-show',params:{slug : booking.bookable.slug}}">{{ booking.bookable.title }}</router-link>
-                        </h5>
-                        <p class="text-secondary">From {{ booking.from }} To {{ booking.to }} </p>
-                    </div>
-                    <div class="col-md-8">
-                        <div class="form-group ">
-                            <label class="col-form-label">Select the star rating : </label>
-                            <star-rating v-model="value" class="fa-2x"></star-rating>
+                <div v-if="reviewExist">
+                    <h3  class="text-secondary font-weight-bolder">You've already left a review for this booking!</h3>
+                </div>
+                <div v-else>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <h5>stayed at
+                                <router-link :to="{name:'bookable-show',params:{slug : booking.bookable.slug}}">{{ booking.bookable.title }}</router-link>
+                            </h5>
+                            <p class="text-secondary">From {{ booking.from }} To {{ booking.to }} </p>
                         </div>
-                        <div class="form-group ">
-                            <label class="col-form-label" for="content">describe your experience : </label>
-                            <textarea class="form-control" id="content" rows="10"></textarea>
-                        </div>
-                        <div class="form-group d-flex justify-content-end">
-                            <button class="btn btn-primary">submit</button>
+                        <div class="col-md-8">
+                            <div class="form-group ">
+                                <label class="col-form-label">Select the star rating : </label>
+                                <star-rating v-model="value" class="fa-2x"></star-rating>
+                            </div>
+                            <div class="form-group ">
+                                <label class="col-form-label" for="content">describe your experience : </label>
+                                <textarea v-model="content" class="form-control" id="content" rows="10"></textarea>
+                                <validation-errors :errors="getValidationErrors('content')"></validation-errors>
+                            </div>
+                            <div class="form-group d-flex justify-content-end">
+                                <button class="btn btn-primary" @click.prevent="store" :disabled="disabled">submit
+                                    <span v-if="disabled" class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -41,25 +51,64 @@
         name: "Review" ,
         data : () => ({
             value : 5 ,
+            content : null,
+            id : null ,
             review : null ,
             booking : null ,
+            success : false,
+            validationErrors : null,
+            fatalError : false,
             loading : true ,
+            disabled : false ,
         }),
         created()
         {
-            let id = this.$route.params.id;
-            axios.get(`/api/review/${id}`).then(response => {
+            this.id = this.$route.params.id;
+            axios.get(`/api/review/${this.id}`).then(response => {
                 this.review = response.data.data;
             }).catch(error => {
                 if( error.response.status === 404 )
                 {
-                    axios.get(`/api/booking/${id}`).then(response => {
+                    axios.get(`/api/booking/${this.id}`).then(response => {
                         this.booking = response.data.data;
                     }).catch(error => {})
                 }
             }).then(() => {
                 this.loading = false;
             });
+        },
+        methods:{
+            store()
+            {
+                this.success = false;
+                this.fatalError = false;
+                this.validationErrors = null;
+                this.disabled = true;
+
+                axios.post(`/api/review`,{
+                    id : this.id,
+                    content: this.content ,
+                    rating : this.value
+                }).then(res => {
+                    if(res.status === 201)
+                    {
+                        this.success = true;
+                    }
+                }).catch(err => {
+                    if(err.response.status === 422)
+                    {
+                        err.response.data.errors.content !== null && _.size(err.response.data.errors) !== 0
+                            ? this.validationErrors = err.response.data.errors
+                            : this.fatalError = true;
+                    }
+                }).then(()=>this.disabled = false);
+            },
+            getValidationErrors(name)
+            {
+                return this.validationErrors !== null && this.validationErrors[name] !== null
+                    ? this.validationErrors[name]
+                    : null ;
+            }
         },
         computed:{
             reviewExist()
