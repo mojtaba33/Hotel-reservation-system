@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div v-for="(error,i) in errors" :key="'te'+i" class="text-danger font-weight-light" >
+        <div v-for="(error,i) in errors" :key="key(i)" class="text-danger font-weight-light " >
             {{ error }}
         </div>
     </div>
@@ -9,10 +9,12 @@
 <script>
     export default {
         props : ['errors'],
-        name: "ValidationErrors"
+        name: "ValidationErrors",
+        methods:{
+            key(i)
+            {
+                return `error-${Math.random()}-${i}`;
+            }
+        }
     }
 </script>
-
-<style scoped>
-
-</style>

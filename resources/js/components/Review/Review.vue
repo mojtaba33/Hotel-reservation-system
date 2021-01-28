@@ -31,7 +31,7 @@
                             </div>
                             <div class="form-group ">
                                 <label class="col-form-label" for="content">describe your experience : </label>
-                                <textarea v-model="content" class="form-control" id="content" rows="10"></textarea>
+                                <textarea v-model="content" class="form-control" :class="{ 'input-error' : getValidationErrors('content') }" id="content" rows="10"></textarea>
                                 <validation-errors :errors="getValidationErrors('content')"></validation-errors>
                             </div>
                             <div class="form-group d-flex justify-content-end">

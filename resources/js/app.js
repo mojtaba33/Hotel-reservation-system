@@ -3,6 +3,7 @@ window.Vue = require('vue').default;
 
 import VueRouter from 'vue-router';
 import router from './routes';
+import {store} from './store';
 import moment from 'moment';
 
 import Index from "./Index";
@@ -25,6 +26,7 @@ Vue.use(VueRouter);
 const app = new Vue({
     el: '#app',
     router,
+    store,
     components:{
         Index
     }

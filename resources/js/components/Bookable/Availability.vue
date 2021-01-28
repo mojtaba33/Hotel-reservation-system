@@ -32,11 +32,27 @@
         name: "Availability",
         mixins : [ValidationErrorMixin],
         data:() => ({
-            from : null ,
-            to : null ,
             is_available : null,
             disabled : false
         }),
+        computed:{
+            from: {
+                get () {
+                    return this.$store.state.availability.lastSearch.from;
+                },
+                set (value) {
+                    this.$store.dispatch('availability/saveFrom', value)
+                }
+            },
+            to: {
+                get () {
+                    return this.$store.state.availability.lastSearch.to
+                },
+                set (value) {
+                    this.$store.dispatch('availability/saveTo', value)
+                }
+            },
+        },
         methods:{
             check()
             {
@@ -63,7 +79,7 @@
     }
 </script>
 
-<style scoped>
+<style>
     .input-error {
         border-color: #e3342f !important;
     }
