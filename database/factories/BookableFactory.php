@@ -18,12 +18,14 @@ class BookableFactory extends Factory
      * Define the model's default state.
      *
      * @return array
+     * @throws \Exception
      */
     public function definition()
     {
         return [
             'title' => $this->faker->name,
             'description' => $this->faker->text,
+            'price' => random_int(50,200),
         ];
     }
 }
