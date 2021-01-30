@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\api\BookableController;
 use App\Http\Controllers\api\CheckBookingAvailability;
+use App\Http\Controllers\api\GetBookablePriceController;
 use App\Http\Controllers\api\ReviewController;
 use App\Http\Controllers\api\ShowBookingByReviewKeyController;
 use Illuminate\Http\Request;
@@ -24,6 +25,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::apiResource('bookable', BookableController::class);
 Route::get('bookable/{bookable:slug}/availability',CheckBookingAvailability::class);
+Route::post('bookable/{bookable:slug}/price', GetBookablePriceController::class);
 
 Route::get('bookable/{bookable:slug}/review', [ReviewController::class,'index']);
 Route::get('review/{review}', [ReviewController::class,'show']);
