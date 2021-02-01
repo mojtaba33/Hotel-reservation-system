@@ -1,8 +1,10 @@
 <template>
     <div>
         <h5 class="text-dark mb-3">Check Availability
-            <span v-if="is_available === true" class="text-success" style="font-size: 14px;"> ( Available ) </span>
-            <span v-else-if="is_available === false" class="text-danger" style="font-size: 14px;"> ( Not Available ) </span>
+            <transition name="fade">
+                <span v-if="is_available === true" class="text-success" style="font-size: 14px;"> ( Available ) </span>
+                <span v-else-if="is_available === false" class="text-danger" style="font-size: 14px;"> ( Not Available ) </span>
+            </transition>
         </h5>
         <form>
             <div class="row">
@@ -54,7 +56,7 @@
             },
         },
         methods:{
-            check()
+            async check()
             {
                 let slug = this.$route.params.slug;
                 this.disabled = true;
@@ -68,7 +70,9 @@
                     }
                 }).then(response => {
                     this.is_available = response.data.data.is_available;
+                    this.$emit('show-price' , this.is_available );
                 }).catch(error => {
+                    this.$emit('show-price' , false );
                     if ( error.response.status === 422 )
                     {
                         this.validationErrors = error.response.data.errors ;
@@ -80,7 +84,5 @@
 </script>
 
 <style>
-    .input-error {
-        border-color: #e3342f !important;
-    }
+
 </style>
