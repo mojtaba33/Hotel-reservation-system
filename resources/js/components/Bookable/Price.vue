@@ -15,15 +15,49 @@
                 <span>total</span>
                 <span>${{ price.total }}</span>
             </div>
-            <button class="btn btn-outline-dark btn-block">Book now</button>
+            <button class="btn btn-outline-dark btn-block" @click="addToBasket" :disabled="disabled || isAlreadyInBasket">Book now
+                <span v-if="disabled" class="spinner-border spinner-border-sm text-dark" role="status" aria-hidden="true"></span>
+            </button>
+
+        </div>
+
         </div>
     </div>
 </template>
 
 <script>
+    import { mapState } from 'vuex'
     export default {
         name: "Price",
-        props:['price','gettingPrice'],
+        props:['price','gettingPrice','slug'],
+        data:()=>({
+            disabled : false,
+        }),
+        computed : {
+            ...mapState({
+                lastSearch : state => state.availability.lastSearch,
+            }),
+            isAlreadyInBasket()
+            {
+                return this.$store.getters['basket/isAlreadyInBasket'](this.slug);
+            }
+        },
+        methods:{
+            addToBasket()
+            {
+                this.disabled = true;
+
+                const slug = this.$route.params.slug;
+                this.$store.dispatch('basket/addToBasket',{
+                    price : this.price,
+                    bookable : slug,
+                    from : this.lastSearch.from,
+                    to : this.lastSearch.to
+                });
+
+                this.disabled = false;
+            }
+        }
     }
 </script>
 

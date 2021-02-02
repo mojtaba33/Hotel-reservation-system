@@ -16,7 +16,13 @@
             <div class="col-md-4">
                 <availability @show-price="showPrice($event)"></availability>
                 <transition name="fade">
-                    <price :price="price" :getting-price="gettingPrice" v-if="price" ></price>
+                    <price :price="price" :getting-price="gettingPrice" :slug="slug" v-if="price" ></price>
+                </transition>
+                <transition name="fade">
+                    <div v-if="isAlreadyInBasket" class="mt-3">
+                        <button class="btn btn-block btn-outline-secondary text-uppercase">remove from basket</button>
+                        <div class="mt-4 text-muted warning">Seems like you've added this object to basket already. If you want to change dates, remove from the basket first.</div>
+                    </div>
                 </transition>
             </div>
         </div>
@@ -43,6 +49,10 @@
         computed:{
             from () {return this.$store.state.availability.lastSearch.from},
             to () {return this.$store.state.availability.lastSearch.to},
+            isAlreadyInBasket()
+            {
+                return this.$store.getters['basket/isAlreadyInBasket'](this.slug);
+            }
         },
         created(){
             this.slug = this.$route.params.slug;
@@ -63,11 +73,9 @@
                         to : this.to
                     }).then(res => {
                         this.price = res.data.data;
-                        this.gettingPrice = false;
                     }).catch( () => {
                         this.price = null;
-                        this.gettingPrice = false;
-                    });
+                    }).then(() => {this.gettingPrice = false});
                 }
             }
         }

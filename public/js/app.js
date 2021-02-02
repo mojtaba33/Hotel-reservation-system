@@ -1856,6 +1856,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -1869,8 +1876,18 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  name: "Index"
+  name: "Index",
+  computed: _objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapGetters)({
+    basketCount: 'basket/basketCount'
+  }))
 });
 
 /***/ }),
@@ -2010,6 +2027,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 //
 //
 //
@@ -2032,9 +2056,42 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "Price",
-  props: ['price', 'gettingPrice']
+  props: ['price', 'gettingPrice', 'slug'],
+  data: function data() {
+    return {
+      disabled: false
+    };
+  },
+  computed: _objectSpread(_objectSpread({}, (0,vuex__WEBPACK_IMPORTED_MODULE_0__.mapState)({
+    lastSearch: function lastSearch(state) {
+      return state.availability.lastSearch;
+    }
+  })), {}, {
+    isAlreadyInBasket: function isAlreadyInBasket() {
+      return this.$store.getters['basket/isAlreadyInBasket'](this.slug);
+    }
+  }),
+  methods: {
+    addToBasket: function addToBasket() {
+      this.disabled = true;
+      var slug = this.$route.params.slug;
+      this.$store.dispatch('basket/addToBasket', {
+        price: this.price,
+        bookable: slug,
+        from: this.lastSearch.from,
+        to: this.lastSearch.to
+      });
+      this.disabled = false;
+    }
+  }
 });
 
 /***/ }),
@@ -2145,6 +2202,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 
 
@@ -2170,6 +2233,9 @@ __webpack_require__.r(__webpack_exports__);
     },
     to: function to() {
       return this.$store.state.availability.lastSearch.to;
+    },
+    isAlreadyInBasket: function isAlreadyInBasket() {
+      return this.$store.getters['basket/isAlreadyInBasket'](this.slug);
     }
   },
   created: function created() {
@@ -2192,9 +2258,9 @@ __webpack_require__.r(__webpack_exports__);
           to: this.to
         }).then(function (res) {
           _this2.price = res.data.data;
-          _this2.gettingPrice = false;
         })["catch"](function () {
           _this2.price = null;
+        }).then(function () {
           _this2.gettingPrice = false;
         });
       }
@@ -2759,16 +2825,19 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "store": () => (/* binding */ store)
 /* harmony export */ });
-/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
-/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm.js");
+/* harmony import */ var vuex__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vuex */ "./node_modules/vuex/dist/vuex.esm.js");
 /* harmony import */ var _vuex_madules_availability__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./vuex madules/availability */ "./resources/js/vuex madules/availability.js");
+/* harmony import */ var _vuex_madules_basket__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./vuex madules/basket */ "./resources/js/vuex madules/basket.js");
 
 
 
-vue__WEBPACK_IMPORTED_MODULE_1__.default.use(vuex__WEBPACK_IMPORTED_MODULE_2__.default);
-var store = new vuex__WEBPACK_IMPORTED_MODULE_2__.default.Store({
+
+vue__WEBPACK_IMPORTED_MODULE_2__.default.use(vuex__WEBPACK_IMPORTED_MODULE_3__.default);
+var store = new vuex__WEBPACK_IMPORTED_MODULE_3__.default.Store({
   modules: {
-    availability: _vuex_madules_availability__WEBPACK_IMPORTED_MODULE_0__.availability
+    availability: _vuex_madules_availability__WEBPACK_IMPORTED_MODULE_0__.availability,
+    basket: _vuex_madules_basket__WEBPACK_IMPORTED_MODULE_1__.basket
   }
 });
 
@@ -2811,6 +2880,51 @@ var availability = {
     saveTo: function saveTo(context, payload) {
       context.commit('setTo', payload);
       localStorage.setItem('to', payload);
+    }
+  }
+};
+
+/***/ }),
+
+/***/ "./resources/js/vuex madules/basket.js":
+/*!*********************************************!*\
+  !*** ./resources/js/vuex madules/basket.js ***!
+  \*********************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "basket": () => (/* binding */ basket)
+/* harmony export */ });
+var basket = {
+  namespaced: true,
+  state: {
+    basket: localStorage.getItem('basket') ? JSON.parse(localStorage.getItem('basket')) : []
+  },
+  getters: {
+    isAlreadyInBasket: function isAlreadyInBasket(state) {
+      return function (slug) {
+        return !!_.find(state.basket, {
+          bookable: slug
+        });
+      };
+    },
+    basketCount: function basketCount(state) {
+      return state.basket.length;
+    }
+  },
+  mutations: {
+    addToBasket: function addToBasket(state, payload) {
+      state.basket.push(payload);
+    }
+  },
+  actions: {
+    addToBasket: function addToBasket(_ref, payload) {
+      var commit = _ref.commit,
+          state = _ref.state;
+      commit('addToBasket', payload);
+      localStorage.setItem('basket', JSON.stringify(state.basket));
     }
   }
 };
@@ -61651,6 +61765,30 @@ var render = function() {
             attrs: { to: { name: "home" } }
           },
           [_vm._v("\n            UdemyMaster\n        ")]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "d-flex align-items-baseline justify-content-end" },
+          [
+            _c(
+              "router-link",
+              {
+                staticClass: "text-dark font-weight-bold",
+                attrs: { to: { name: "home" } }
+              },
+              [_vm._v("\n                Basket\n            ")]
+            ),
+            _vm._v(" "),
+            _vm.basketCount
+              ? _c(
+                  "span",
+                  { staticClass: "badge bg-secondary text-light ml-1" },
+                  [_vm._v(_vm._s(_vm.basketCount))]
+                )
+              : _vm._e()
+          ],
+          1
         )
       ],
       1
@@ -61891,9 +62029,23 @@ var render = function() {
               _c("span", [_vm._v("$" + _vm._s(_vm.price.total))])
             ]),
             _vm._v(" "),
-            _c("button", { staticClass: "btn btn-outline-dark btn-block" }, [
-              _vm._v("Book now")
-            ])
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-outline-dark btn-block",
+                attrs: { disabled: _vm.disabled || _vm.isAlreadyInBasket },
+                on: { click: _vm.addToBasket }
+              },
+              [
+                _vm._v("Book now\n            "),
+                _vm.disabled
+                  ? _c("span", {
+                      staticClass: "spinner-border spinner-border-sm text-dark",
+                      attrs: { role: "status", "aria-hidden": "true" }
+                    })
+                  : _vm._e()
+              ]
+            )
           ],
           2
         )
@@ -62078,13 +62230,35 @@ var render = function() {
                     ? _c("price", {
                         attrs: {
                           price: _vm.price,
-                          "getting-price": _vm.gettingPrice
+                          "getting-price": _vm.gettingPrice,
+                          slug: _vm.slug
                         }
                       })
                     : _vm._e()
                 ],
                 1
-              )
+              ),
+              _vm._v(" "),
+              _c("transition", { attrs: { name: "fade" } }, [
+                _vm.isAlreadyInBasket
+                  ? _c("div", { staticClass: "mt-3" }, [
+                      _c(
+                        "button",
+                        {
+                          staticClass:
+                            "btn btn-block btn-outline-secondary text-uppercase"
+                        },
+                        [_vm._v("remove from basket")]
+                      ),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "mt-4 text-muted warning" }, [
+                        _vm._v(
+                          "Seems like you've added this object to basket already. If you want to change dates, remove from the basket first."
+                        )
+                      ])
+                    ])
+                  : _vm._e()
+              ])
             ],
             1
           )
