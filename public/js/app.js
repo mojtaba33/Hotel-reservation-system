@@ -1933,6 +1933,53 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   name: "Basket",
@@ -62032,101 +62079,213 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "row" }, [
-    _c("div", { staticClass: "col-md-8" }, [_vm._v("form")]),
+    _vm._m(0),
     _vm._v(" "),
-    _c(
-      "div",
-      { staticClass: "col-md-4" },
-      [
-        _c(
-          "h6",
-          { staticClass: "text-secondary text-uppercase font-weight-bold" },
-          [_vm._v("basket items")]
-        ),
-        _vm._v(" "),
-        _vm._l(_vm.basketItems, function(item, i) {
-          return _c(
+    _c("div", { staticClass: "col-md-4" }, [
+      _c(
+        "h6",
+        { staticClass: "text-secondary text-uppercase font-weight-bold" },
+        [_vm._v("cart items")]
+      ),
+      _vm._v(" "),
+      _vm.basketItems.length == 0
+        ? _c("div", { staticClass: "text-secondary" }, [
+            _vm._v("\n            Your cart is empty\n        ")
+          ])
+        : _c(
             "div",
-            { key: "basket-" + i, staticClass: "mb-2 border-top" },
             [
               _c(
-                "div",
-                {
-                  staticClass:
-                    "d-flex justify-content-between align-baseline pt-2"
-                },
-                [
-                  _c(
-                    "router-link",
-                    {
-                      staticClass: "text-dark font-weight-bolder",
-                      attrs: {
-                        to: {
-                          name: "bookable-show",
-                          params: { slug: item.bookable.slug }
-                        }
-                      }
-                    },
-                    [_vm._v(_vm._s(item.bookable.title))]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "button",
-                    {
-                      staticClass: "remove",
-                      on: {
-                        click: function($event) {
-                          return _vm.$store.dispatch(
-                            "basket/removeFromBasket",
-                            item.bookable.slug
-                          )
-                        }
-                      }
-                    },
+                "transition-group",
+                { attrs: { name: "fade" } },
+                _vm._l(_vm.basketItems, function(item, i) {
+                  return _c(
+                    "div",
+                    { key: "basket-" + i, staticClass: "mb-2 border-top" },
                     [
-                      _c("i", {
-                        staticClass: "fa fa-trash",
-                        attrs: { "aria-hidden": "true" }
-                      })
+                      _c(
+                        "div",
+                        {
+                          staticClass:
+                            "d-flex justify-content-between align-baseline pt-2"
+                        },
+                        [
+                          _c(
+                            "router-link",
+                            {
+                              staticClass: "text-dark font-weight-bolder",
+                              attrs: {
+                                to: {
+                                  name: "bookable-show",
+                                  params: { slug: item.bookable.slug }
+                                }
+                              }
+                            },
+                            [_vm._v(_vm._s(item.bookable.title))]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "button",
+                            {
+                              staticClass: "remove",
+                              on: {
+                                click: function($event) {
+                                  return _vm.$store.dispatch(
+                                    "basket/removeFromBasket",
+                                    item.bookable.slug
+                                  )
+                                }
+                              }
+                            },
+                            [
+                              _c("i", {
+                                staticClass: "fa fa-trash",
+                                attrs: { "aria-hidden": "true" }
+                              })
+                            ]
+                          )
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          staticClass:
+                            "d-flex justify-content-between pt-1 text-secondary"
+                        },
+                        [
+                          _c("span", [_vm._v("From : " + _vm._s(item.from))]),
+                          _vm._v(" "),
+                          _c("span", [_vm._v("To : " + _vm._s(item.to))])
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        {
+                          staticClass:
+                            "d-flex justify-content-between pt-1 text-dark"
+                        },
+                        [
+                          _c("span", [_vm._v("Total")]),
+                          _vm._v(" "),
+                          _c("span", [_vm._v("$" + _vm._s(item.price.total))])
+                        ]
+                      )
                     ]
                   )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "div",
-                {
-                  staticClass:
-                    "d-flex justify-content-between pt-1 text-secondary"
-                },
-                [
-                  _c("span", [_vm._v("From : " + _vm._s(item.from))]),
-                  _vm._v(" "),
-                  _c("span", [_vm._v("To : " + _vm._s(item.to))])
-                ]
-              ),
-              _vm._v(" "),
-              _c(
-                "div",
-                {
-                  staticClass: "d-flex justify-content-between pt-1 text-dark"
-                },
-                [
-                  _c("span", [_vm._v("Total")]),
-                  _vm._v(" "),
-                  _c("span", [_vm._v("$" + _vm._s(item.price.total))])
-                ]
+                }),
+                0
               )
-            ]
+            ],
+            1
           )
-        })
-      ],
-      2
-    )
+    ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-8 border-right" }, [
+      _c("h4", { staticClass: "mb-3" }, [_vm._v("Billing address")]),
+      _vm._v(" "),
+      _c(
+        "form",
+        { staticClass: "needs-validation", attrs: { novalidate: "" } },
+        [
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "col-md-6 mb-3" }, [
+              _c("label", { attrs: { for: "firstName" } }, [
+                _vm._v("First name")
+              ]),
+              _vm._v(" "),
+              _c("input", {
+                staticClass: "form-control",
+                attrs: { type: "text", id: "firstName" }
+              }),
+              _vm._v(" "),
+              _c("div", { staticClass: "invalid-feedback" }, [
+                _vm._v(
+                  "\n                    Valid first name is required.\n                    "
+                )
+              ])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-md-6 mb-3" }, [
+              _c("label", { attrs: { for: "lastName" } }, [
+                _vm._v("Last name")
+              ]),
+              _vm._v(" "),
+              _c("input", {
+                staticClass: "form-control",
+                attrs: { type: "text", id: "lastName" }
+              })
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "mb-3" }, [
+            _c("label", { attrs: { for: "email" } }, [_vm._v("Email")]),
+            _vm._v(" "),
+            _c("input", {
+              staticClass: "form-control",
+              attrs: { type: "email", id: "email" }
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "mb-3" }, [
+            _c("label", { attrs: { for: "address" } }, [_vm._v("Address")]),
+            _vm._v(" "),
+            _c("input", {
+              staticClass: "form-control",
+              attrs: { type: "text", id: "address" }
+            })
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "col-md-5 mb-3" }, [
+              _c("label", { attrs: { for: "country" } }, [_vm._v("Country")]),
+              _vm._v(" "),
+              _c("input", {
+                staticClass: "form-control",
+                attrs: { type: "text", id: "country" }
+              })
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-md-4 mb-3" }, [
+              _c("label", { attrs: { for: "state" } }, [_vm._v("State")]),
+              _vm._v(" "),
+              _c("input", {
+                staticClass: "form-control",
+                attrs: { type: "text", id: "state" }
+              })
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "col-md-3 mb-3" }, [
+              _c("label", { attrs: { for: "zip" } }, [_vm._v("Zip")]),
+              _vm._v(" "),
+              _c("input", {
+                staticClass: "form-control",
+                attrs: { type: "text", id: "zip" }
+              })
+            ])
+          ]),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-dark btn-lg btn-block mt-4",
+              attrs: { type: "submit" }
+            },
+            [_vm._v("Book now")]
+          )
+        ]
+      )
+    ])
+  }
+]
 render._withStripped = true
 
 
