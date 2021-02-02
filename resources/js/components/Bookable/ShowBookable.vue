@@ -16,7 +16,7 @@
             <div class="col-md-4">
                 <availability @show-price="showPrice($event)"></availability>
                 <transition name="fade">
-                    <price :price="price" :getting-price="gettingPrice" :slug="slug" v-if="price" ></price>
+                    <price :price="price" :getting-price="gettingPrice" :bookable="bookable" v-if="price" ></price>
                 </transition>
                 <transition name="fade">
                     <div v-if="isAlreadyInBasket" class="mt-3">

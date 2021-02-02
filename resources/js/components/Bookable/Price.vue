@@ -29,7 +29,7 @@
     import { mapState } from 'vuex'
     export default {
         name: "Price",
-        props:['price','gettingPrice','slug'],
+        props:['price','gettingPrice','bookable'],
         data:()=>({
             disabled : false,
         }),
@@ -39,7 +39,7 @@
             }),
             isAlreadyInBasket()
             {
-                return this.$store.getters['basket/isAlreadyInBasket'](this.slug);
+                return this.$store.getters['basket/isAlreadyInBasket'](this.bookable.slug);
             }
         },
         methods:{
@@ -50,7 +50,7 @@
                 const slug = this.$route.params.slug;
                 this.$store.dispatch('basket/addToBasket',{
                     price : this.price,
-                    bookable : slug,
+                    bookable : this.bookable,
                     from : this.lastSearch.from,
                     to : this.lastSearch.to
                 });

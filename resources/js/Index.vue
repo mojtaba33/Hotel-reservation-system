@@ -5,7 +5,7 @@
                 UdemyMaster
             </router-link>
             <div class="d-flex align-items-baseline justify-content-end">
-                <router-link class="text-dark font-weight-bold" :to="{name:'home'}" >
+                <router-link class="text-dark font-weight-bold" :to="{name:'basket'}" >
                     Basket
                 </router-link>
                 <span class="badge bg-secondary text-light ml-1" v-if="basketCount">{{ basketCount }}</span>

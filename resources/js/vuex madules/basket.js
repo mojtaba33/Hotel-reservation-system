@@ -5,7 +5,7 @@ export const basket = {
     },
     getters:{
         isAlreadyInBasket: (state) => (slug) => {
-            return !! _.find(state.basket, {bookable: slug});
+            return !! _.find(state.basket, (o) => o.bookable.slug === slug );
         },
         basketCount(state)
         {
@@ -19,7 +19,7 @@ export const basket = {
         },
         removeFromBasket(state , payload)
         {
-            state.basket = _.filter(state.basket , (o) => o.bookable !== payload  ) ;
+            state.basket = _.filter(state.basket , (o) => o.bookable.slug !== payload  ) ;
         }
     },
     actions: {
