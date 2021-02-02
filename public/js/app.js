@@ -2917,6 +2917,11 @@ var basket = {
   mutations: {
     addToBasket: function addToBasket(state, payload) {
       state.basket.push(payload);
+    },
+    removeFromBasket: function removeFromBasket(state, payload) {
+      state.basket = _.filter(state.basket, function (o) {
+        return o.bookable !== payload;
+      });
     }
   },
   actions: {
@@ -2924,6 +2929,12 @@ var basket = {
       var commit = _ref.commit,
           state = _ref.state;
       commit('addToBasket', payload);
+      localStorage.setItem('basket', JSON.stringify(state.basket));
+    },
+    removeFromBasket: function removeFromBasket(_ref2, payload) {
+      var commit = _ref2.commit,
+          state = _ref2.state;
+      commit('removeFromBasket', payload);
       localStorage.setItem('basket', JSON.stringify(state.basket));
     }
   }
@@ -62246,7 +62257,15 @@ var render = function() {
                         "button",
                         {
                           staticClass:
-                            "btn btn-block btn-outline-secondary text-uppercase"
+                            "btn btn-block btn-outline-secondary text-uppercase",
+                          on: {
+                            click: function($event) {
+                              return _vm.$store.dispatch(
+                                "basket/removeFromBasket",
+                                _vm.slug
+                              )
+                            }
+                          }
                         },
                         [_vm._v("remove from basket")]
                       ),

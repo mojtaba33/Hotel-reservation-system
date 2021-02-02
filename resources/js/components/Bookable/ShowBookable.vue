@@ -20,7 +20,7 @@
                 </transition>
                 <transition name="fade">
                     <div v-if="isAlreadyInBasket" class="mt-3">
-                        <button class="btn btn-block btn-outline-secondary text-uppercase">remove from basket</button>
+                        <button class="btn btn-block btn-outline-secondary text-uppercase" @click="$store.dispatch('basket/removeFromBasket',slug)">remove from basket</button>
                         <div class="mt-4 text-muted warning">Seems like you've added this object to basket already. If you want to change dates, remove from the basket first.</div>
                     </div>
                 </transition>
