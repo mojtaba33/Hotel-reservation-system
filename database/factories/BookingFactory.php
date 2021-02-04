@@ -4,10 +4,8 @@ namespace Database\Factories;
 
 use App\Models\Booking;
 use Carbon\Carbon;
-use function Couchbase\defaultDecoder;
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Database\Eloquent\Factories\Sequence;
-use Illuminate\Support\Collection;
+use App\Models\Address;
 
 class BookingFactory extends Factory
 {
@@ -32,6 +30,8 @@ class BookingFactory extends Factory
         return [
             'from' =>  $from,
             'to'   =>  $to,
+            'price' => random_int(200,5000),
+            'address_id' => Address::factory()->create()->id,
         ];
     }
 }

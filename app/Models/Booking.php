@@ -10,7 +10,8 @@ class Booking extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['from' , 'to' , 'bookable_id','review_key'];
+    //protected $fillable = ['from' , 'to' , 'bookable_id','review_key','price','address_id'];
+    protected $guarded = [];
 
     public function bookable()
     {
@@ -20,6 +21,11 @@ class Booking extends Model
     public function review()
     {
         return $this->hasOne(Review::class);
+    }
+
+    public function address()
+    {
+        return $this->belongsTo(Address::class);
     }
 
     protected static function boot()

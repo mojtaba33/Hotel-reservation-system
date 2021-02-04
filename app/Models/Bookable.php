@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Cviebrock\EloquentSluggable\Sluggable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -33,5 +34,18 @@ class Bookable extends Model
     public function reviews()
     {
         return $this->hasMany(Review::class);
+    }
+
+    public function getPrice($from , $to): array
+    {
+        $days = Carbon::parse($from)->diffInDays(Carbon::parse($to)) + 1 ;
+        $price = $days * $this->price;
+
+        return [
+            'total' => $price,
+            'breakdown' => [
+                $this->price => $days
+            ],
+        ];
     }
 }

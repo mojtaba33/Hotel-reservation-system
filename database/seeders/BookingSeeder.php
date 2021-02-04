@@ -28,6 +28,7 @@ class BookingSeeder extends Seeder
                 $booking = Booking::factory()->make([
                     'from' => $from,
                     'to' => $to ,
+                    'price' => $bookable->getPrice($from,$to)['total'],
                 ]);
 
                 $bookings[] = $booking;
