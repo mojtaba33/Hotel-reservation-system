@@ -48,4 +48,14 @@ class Bookable extends Model
             ],
         ];
     }
+
+    public function checkAvailability($from,$to) : bool
+    {
+        $bookings = $this->bookings()
+            ->where('to','>=',$from)
+            ->where('from','<=',$to)
+            ->get()->count();
+
+        return $bookings === 0 ;
+    }
 }

@@ -22,12 +22,7 @@ class CheckBookingAvailability extends Controller
             'to' => 'required|date_format:Y-m-d|after_or_equal:from',
         ]);
 
-        $bookings = $bookable->bookings()
-            ->where('to','>=',$request->input('from'))
-            ->where('from','<=',$request->input('to'))
-            ->get()->count();
-
-        $is_available = $bookings === 0 ;
+        $is_available = $bookable->checkAvailability($request->input('form'),$request->input('to'));
 
         return response()->json([
             'data' => ['is_available' => $is_available]

@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\api\BookableController;
 use App\Http\Controllers\api\CheckBookingAvailability;
+use App\Http\Controllers\api\CheckoutController;
 use App\Http\Controllers\api\GetBookablePriceController;
 use App\Http\Controllers\api\ReviewController;
 use App\Http\Controllers\api\ShowBookingByReviewKeyController;
@@ -31,3 +32,5 @@ Route::get('bookable/{bookable:slug}/review', [ReviewController::class,'index'])
 Route::get('review/{review}', [ReviewController::class,'show']);
 Route::post('review', [ReviewController::class,'store']);
 Route::get('booking/{booking:review_key}', ShowBookingByReviewKeyController::class);
+
+Route::post('checkout',[CheckoutController::class,'store']);
