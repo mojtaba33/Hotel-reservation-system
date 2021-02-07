@@ -1,5 +1,6 @@
 <?php
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +17,5 @@ use Illuminate\Support\Facades\Route;
 Route::get('/{all?}', function () {
     return view('welcome');
 })->where('all','^(?!api\/)[\/\w\.\,-]*');
+
+Auth::routes();
