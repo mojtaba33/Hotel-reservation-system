@@ -7,7 +7,7 @@ use Illuminate\Contracts\Validation\Rule;
 
 class Available implements Rule
 {
-    protected $title;
+    protected $message;
     /**
      * Determine if the validation rule passes.
      *
@@ -17,9 +17,15 @@ class Available implements Rule
      */
     public function passes($attribute, $value)
     {
-        $this->title = $value['title'];
-        $bookable = Bookable::where('slug',$value['slug'])->firstOrFail();
-        return $bookable->checkAvailability($value['from'],$value['to']);
+        $bookable = Bookable::where('slug',$value['slug'])->first();
+        if($bookable)
+        {
+            $this->message = "The {$value['title']} is not available in given dates!";
+            return $bookable->checkAvailability($value['from'],$value['to']);
+        }else{
+            $this->message = "The {$value['title']} is not exist!";
+            return false;
+        }
     }
 
     /**
@@ -29,6 +35,6 @@ class Available implements Rule
      */
     public function message()
     {
-        return "The {$this->title} is not available in given dates!";
+        return $this->message;
     }
 }

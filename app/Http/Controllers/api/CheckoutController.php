@@ -23,6 +23,7 @@ class CheckoutController extends Controller
             "address.name" => "required",
             "address.last_name" => "required",
             "address.city" => "required",
+            "address.address" => "required",
             "address.country" => "required",
             "address.state" => "required",
             "address.zip" => "required",
@@ -34,6 +35,7 @@ class CheckoutController extends Controller
             "last_name" => $request->input('address.last_name'),
             "city" => $request->input('address.city'),
             "country" => $request->input('address.country'),
+            "address" => $request->input('address.address'),
             "state" => $request->input('address.state'),
             "zip" => $request->input('address.zip'),
             "email" => $request->input('address.email'),
@@ -43,7 +45,7 @@ class CheckoutController extends Controller
         {
             $bookable = Bookable::where('slug',$item['slug'])->firstOrFail();
 
-            $booking = $bookable->bookings()->create([
+            $bookable->bookings()->create([
                 "from" => $item['from'],
                 "to" => $item['to'],
                 "price" => $bookable->getPrice($item['from'],$item['to'])['total'],
@@ -52,11 +54,7 @@ class CheckoutController extends Controller
         }
 
         return response()->json([
-            'date' => [
-                'from'  => $booking->from,
-                'to'    => $booking->to,
-                'total' => $booking->price,
-            ]
-        ]);
+            'message' => 'success'
+        ],200);
     }
 }

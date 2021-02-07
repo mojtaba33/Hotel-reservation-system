@@ -65,6 +65,7 @@
         methods:{
             showPrice(hasAvailability)
             {
+                this.price = null ;
                 if (hasAvailability)
                 {
                     this.gettingPrice = true;

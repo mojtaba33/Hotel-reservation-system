@@ -20,6 +20,10 @@ export const basket = {
         removeFromBasket(state , payload)
         {
             state.basket = _.filter(state.basket , (o) => o.bookable.slug !== payload  ) ;
+        },
+        clearBasket(state , payload)
+        {
+            state.basket = payload ;
         }
     },
     actions: {
@@ -31,6 +35,11 @@ export const basket = {
         removeFromBasket({commit,state} , payload)
         {
             commit('removeFromBasket',payload);
+            localStorage.setItem('basket',JSON.stringify(state.basket));
+        },
+        clearBasket({commit,state})
+        {
+            commit('clearBasket',[]);
             localStorage.setItem('basket',JSON.stringify(state.basket));
         }
     }

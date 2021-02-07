@@ -26,6 +26,7 @@ class AddressFactory extends Factory
             'last_name' => $this->faker->name,
             'email' => $this->faker->email,
             'state' => $this->faker->state,
+            'address' => $this->faker->address,
             'country' => $this->faker->country,
             'zip' => random_int(10000,99999),
             'city' => $this->faker->city,
