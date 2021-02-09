@@ -1908,6 +1908,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
@@ -62810,120 +62815,142 @@ var render = function() {
   return _c("div", [
     _c(
       "nav",
-      { staticClass: "navbar border-bottom " },
+      {
+        staticClass:
+          "navbar navbar-expand-lg navbar-light bg-light justify-content-between"
+      },
       [
         _c(
           "router-link",
-          {
-            staticClass: "text-dark font-weight-bold",
-            attrs: { to: { name: "home" } }
-          },
+          { staticClass: "navbar-brand", attrs: { to: { name: "home" } } },
           [_vm._v("\n            UdemyMaster\n        ")]
         ),
         _vm._v(" "),
+        _vm._m(0),
+        _vm._v(" "),
         _c(
-          "ul",
+          "div",
           {
-            staticClass:
-              "list-group-horizontal d-flex align-items-baseline justify-content-end"
+            staticClass: "collapse navbar-collapse",
+            attrs: { id: "navbarNav" }
           },
           [
-            _c(
-              "li",
-              { staticClass: "list-group-item" },
-              [
-                _c(
-                  "router-link",
-                  {
-                    staticClass: "text-dark font-weight-bold",
-                    attrs: { to: { name: "basket" } }
-                  },
-                  [_vm._v("\n                Basket\n                ")]
-                ),
-                _vm._v(" "),
-                _vm.basketCount
-                  ? _c(
-                      "span",
-                      { staticClass: "badge bg-secondary text-light ml-1" },
-                      [_vm._v(_vm._s(_vm.basketCount))]
-                    )
-                  : _vm._e()
-              ],
-              1
-            ),
-            _vm._v(" "),
-            _vm.isLoggedIn
-              ? _c(
-                  "li",
-                  { staticClass: "list-group-item" },
-                  [
-                    _c(
-                      "router-link",
-                      {
-                        staticClass: "text-dark font-weight-bold",
-                        attrs: { to: { name: "profile" } }
-                      },
-                      [_vm._v("Profile")]
-                    )
-                  ],
-                  1
-                )
-              : _vm._e(),
-            _vm._v(" "),
-            _vm.isLoggedIn
-              ? _c("li", { staticClass: "list-group-item" }, [
+            _c("ul", { staticClass: "navbar-nav ml-auto" }, [
+              _c(
+                "li",
+                { staticClass: "nav-item" },
+                [
                   _c(
-                    "a",
+                    "router-link",
                     {
-                      staticClass: "text-dark font-weight-bold",
-                      attrs: { href: "#" },
-                      on: {
-                        click: function($event) {
-                          $event.preventDefault()
-                          return _vm.logout($event)
-                        }
+                      staticClass: "nav-link",
+                      attrs: {
+                        to: { name: "basket" },
+                        "active-class": "active"
                       }
                     },
-                    [_vm._v("Logout")]
+                    [
+                      _vm._v("\n                    Basket "),
+                      _vm.basketCount
+                        ? _c(
+                            "span",
+                            {
+                              staticClass: "badge bg-secondary text-light",
+                              staticStyle: {
+                                "vertical-align": "middle !important"
+                              }
+                            },
+                            [_vm._v(_vm._s(_vm.basketCount))]
+                          )
+                        : _vm._e()
+                    ]
                   )
-                ])
-              : _vm._e(),
-            _vm._v(" "),
-            !_vm.isLoggedIn
-              ? _c(
-                  "li",
-                  { staticClass: "list-group-item" },
-                  [
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _vm.isLoggedIn
+                ? _c(
+                    "li",
+                    { staticClass: "nav-item" },
+                    [
+                      _c(
+                        "router-link",
+                        {
+                          staticClass: "nav-link",
+                          attrs: {
+                            to: { name: "profile" },
+                            "active-class": "active"
+                          }
+                        },
+                        [_vm._v("Profile")]
+                      )
+                    ],
+                    1
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              _vm.isLoggedIn
+                ? _c("li", { staticClass: "nav-item" }, [
                     _c(
-                      "router-link",
+                      "a",
                       {
-                        staticClass: "text-dark font-weight-bold",
-                        attrs: { to: { name: "login" } }
+                        staticClass: "nav-link",
+                        attrs: { href: "#" },
+                        on: {
+                          click: function($event) {
+                            $event.preventDefault()
+                            return _vm.logout($event)
+                          }
+                        }
                       },
-                      [_vm._v("Login")]
+                      [_vm._v("Logout")]
                     )
-                  ],
-                  1
-                )
-              : _vm._e(),
-            _vm._v(" "),
-            !_vm.isLoggedIn
-              ? _c(
-                  "li",
-                  { staticClass: "list-group-item" },
-                  [
-                    _c(
-                      "router-link",
-                      {
-                        staticClass: "text-dark font-weight-bold",
-                        attrs: { to: { name: "register" } }
-                      },
-                      [_vm._v("Register")]
-                    )
-                  ],
-                  1
-                )
-              : _vm._e()
+                  ])
+                : _vm._e(),
+              _vm._v(" "),
+              !_vm.isLoggedIn
+                ? _c(
+                    "li",
+                    { staticClass: "nav-item" },
+                    [
+                      _c(
+                        "router-link",
+                        {
+                          staticClass: "nav-link",
+                          attrs: {
+                            to: { name: "login" },
+                            "active-class": "active"
+                          }
+                        },
+                        [_vm._v("Login")]
+                      )
+                    ],
+                    1
+                  )
+                : _vm._e(),
+              _vm._v(" "),
+              !_vm.isLoggedIn
+                ? _c(
+                    "li",
+                    { staticClass: "nav-item" },
+                    [
+                      _c(
+                        "router-link",
+                        {
+                          staticClass: "nav-link",
+                          attrs: {
+                            to: { name: "register" },
+                            "active-class": "active"
+                          }
+                        },
+                        [_vm._v("Register")]
+                      )
+                    ],
+                    1
+                  )
+                : _vm._e()
+            ])
           ]
         )
       ],
@@ -62933,7 +62960,28 @@ var render = function() {
     _c("div", { staticClass: "container mt-5" }, [_c("router-view")], 1)
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "button",
+      {
+        staticClass: "navbar-toggler",
+        attrs: {
+          type: "button",
+          "data-toggle": "collapse",
+          "data-target": "#navbarNav",
+          "aria-controls": "navbarNav",
+          "aria-expanded": "false",
+          "aria-label": "Toggle navigation"
+        }
+      },
+      [_c("span", { staticClass: "navbar-toggler-icon" })]
+    )
+  }
+]
 render._withStripped = true
 
 
@@ -64177,7 +64225,7 @@ var render = function() {
               ],
               staticClass: "form-control form-control-sm",
               class: { "input-error": _vm.getValidationErrors("from") },
-              attrs: { type: "text", id: "from" },
+              attrs: { type: "date", id: "from" },
               domProps: { value: _vm.from },
               on: {
                 input: function($event) {
@@ -64221,7 +64269,7 @@ var render = function() {
               ],
               staticClass: "form-control form-control-sm",
               class: { "input-error": _vm.getValidationErrors("to") },
-              attrs: { type: "text", id: "to" },
+              attrs: { type: "date", id: "to" },
               domProps: { value: _vm.to },
               on: {
                 input: function($event) {

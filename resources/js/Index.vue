@@ -1,33 +1,38 @@
 <template>
     <div>
-        <nav class="navbar border-bottom ">
-            <router-link class="text-dark font-weight-bold" :to="{name:'home'}" >
+        <nav class="navbar navbar-expand-lg navbar-light bg-light justify-content-between">
+            <router-link class="navbar-brand" :to="{name:'home'}" >
                 UdemyMaster
             </router-link>
-            <ul class="list-group-horizontal d-flex align-items-baseline justify-content-end">
-                <li class="list-group-item">
-                    <router-link class="text-dark font-weight-bold" :to="{name:'basket'}" >
-                    Basket
-                    </router-link>
-                    <span class="badge bg-secondary text-light ml-1" v-if="basketCount">{{ basketCount }}</span>
-                </li>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <router-link class="nav-link" :to="{name:'basket'}" active-class="active">
+                        Basket <span class="badge bg-secondary text-light" style="vertical-align:middle !important;" v-if="basketCount">{{ basketCount }}</span>
+                        </router-link>
 
-                <li v-if="isLoggedIn" class="list-group-item">
-                    <router-link class="text-dark font-weight-bold" :to="{name:'profile'}" >Profile</router-link>
-                </li>
+                    </li>
 
-                <li v-if="isLoggedIn" class="list-group-item">
-                    <a class="text-dark font-weight-bold" href="#" @click.prevent="logout" >Logout</a>
-                </li>
+                    <li v-if="isLoggedIn" class="nav-item">
+                        <router-link class="nav-link" :to="{name:'profile'}" active-class="active">Profile</router-link>
+                    </li>
 
-                <li v-if="!isLoggedIn" class="list-group-item">
-                    <router-link class="text-dark font-weight-bold" :to="{name:'login'}" >Login</router-link>
-                </li>
+                    <li v-if="isLoggedIn" class="nav-item">
+                        <a class="nav-link" href="#" @click.prevent="logout" >Logout</a>
+                    </li>
 
-                <li v-if="!isLoggedIn" class="list-group-item">
-                    <router-link class="text-dark font-weight-bold" :to="{name:'register'}" >Register</router-link>
-                </li>
-            </ul>
+                    <li v-if="!isLoggedIn" class="nav-item">
+                        <router-link class="nav-link" :to="{name:'login'}" active-class="active">Login</router-link>
+                    </li>
+
+                    <li v-if="!isLoggedIn" class="nav-item">
+                        <router-link class="nav-link" :to="{name:'register'}" active-class="active">Register</router-link>
+                    </li>
+                </ul>
+            </div>
         </nav>
         <div class="container mt-5">
             <router-view></router-view>

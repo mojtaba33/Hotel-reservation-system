@@ -10,12 +10,12 @@
             <div class="row">
                 <div class="col-6 form-group">
                     <label for="from" class="form-check-label text-secondary text-uppercase" style="font-size: 12px">from</label>
-                    <input type="text" v-model="from" id="from" class="form-control form-control-sm" :class="{ 'input-error' : getValidationErrors('from') }">
+                    <input type="date" v-model="from" id="from" class="form-control form-control-sm" :class="{ 'input-error' : getValidationErrors('from') }">
                     <validation-errors :errors="getValidationErrors('from')"></validation-errors>
                 </div>
                 <div class="col-6 form-group">
                     <label for="to" class="form-check-label text-secondary text-uppercase" style="font-size: 12px">to</label>
-                    <input type="text" v-model="to" id="to" class="form-control form-control-sm" :class="{ 'input-error' : getValidationErrors('to') }">
+                    <input type="date" v-model="to" id="to" class="form-control form-control-sm" :class="{ 'input-error' : getValidationErrors('to') }">
                     <validation-errors :errors="getValidationErrors('to')"></validation-errors>
                 </div>
                 <div class="col form-group">
