@@ -23,6 +23,18 @@ Vue.component("fatal-error", FatalError);
 
 Vue.use(VueRouter);
 
+window.axios.interceptors.response.use(
+    response => response ,
+    error => {
+        if(error.response.status == 401)
+        {
+            store.dispatch("logout");
+        }
+
+        return Promise.reject(error);
+    }
+)
+
 const app = new Vue({
     el: '#app',
     router,

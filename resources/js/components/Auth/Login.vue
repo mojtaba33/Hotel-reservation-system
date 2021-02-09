@@ -67,11 +67,11 @@ export default {
     }),
     computed:{
         ...mapState({
-            isLogin : state => state.auth.isLogin
+            isLoggedIn : state => state.auth.isLoggedIn
         })
     },
     created() {
-        if (this.isLogin) {
+        if (this.isLoggedIn) {
             this.$router.push({name:"home"})
         }
     },

@@ -1,3 +1,5 @@
+const { store } = require('./store');
+
 window._ = require('lodash');
 
 /**

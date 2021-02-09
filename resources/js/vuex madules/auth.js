@@ -1,13 +1,13 @@
 export const auth = {
     namespaced: true,
     state: {
-        isLogin : localStorage.getItem("isLogin") == "true" ? true : false ,
+        isLoggedIn : localStorage.getItem("isLoggedIn") == "true" ? true : false ,
         user : {},
     },
     mutations: {
-        isLogin(state , payload)
+        isLoggedIn(state , payload)
         {
-            state.isLogin = payload ;
+            state.isLoggedIn = payload ;
         },
         setUser(state , payload)
         {
@@ -17,12 +17,12 @@ export const auth = {
     actions: {
         async getUser (context)
         {
-            if ( context.state.isLogin == true )
+            if ( context.state.isLoggedIn == true )
             {
                 try {
                     const response = await axios.get(`/api/user`);
                     context.commit("setUser",response.data);
-                    localStorage.setItem("isLogin","true");
+                    localStorage.setItem("isLoggedIn","true");
                 } catch (error) {
                     context.dispatch("logout");
                 }
@@ -32,13 +32,13 @@ export const auth = {
         },
         login(context)
         {
-            context.commit("isLogin",true);
+            context.commit("isLoggedIn",true);
             context.dispatch("getUser");
         },
         logout(context)
         {
-            context.commit("isLogin",false);
-            localStorage.setItem("isLogin","false");
+            context.commit("isLoggedIn",false);
+            localStorage.setItem("isLoggedIn","false");
             context.commit("setUser",{});
         }
     }
