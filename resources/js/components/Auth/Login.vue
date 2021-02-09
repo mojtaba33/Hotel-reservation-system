@@ -43,7 +43,7 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-8 offset-md-4">
-                                <button @click.prevent="login" type="submit" class="btn btn-primary">Login</button>
+                                <button @click.prevent="login" :disabled="disabled" type="submit" class="btn btn-primary">Login</button>
                             </div>
                         </div>
                     </div>
@@ -54,6 +54,7 @@
 </template>
 <script>
 import ValidationError from '../global/mixins/ValidationError';
+import {mapState} from 'vuex';
 export default {
     mixins : [ValidationError],
     data : () => ({
@@ -61,15 +62,31 @@ export default {
             email : null ,
             password : null ,
             remember : false ,
-        }
+        },
+        disabled : false ,
     }),
+    computed:{
+        ...mapState({
+            isLogin : state => state.auth.isLogin
+        })
+    },
+    created() {
+        if (this.isLogin) {
+            this.$router.push({name:"home"})
+        }
+    },
     methods: {
         async login()
         {
+            this.disabled = true ;
+            this.validationErrors = null ;
+
             try{
                 await axios.get('/sanctum/csrf-cookie');
                 const response = await axios.post('/login',this.form);
-                console.log(response);
+
+                this.$store.dispatch("auth/login");
+                this.$router.push({name:"home"});
             }catch(error){
                 if(error.response)
                 {
@@ -79,6 +96,8 @@ export default {
                     }
                 }
             }
+
+            this.disabled = false ;
         }
     },
 }

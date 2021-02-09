@@ -29,5 +29,9 @@ const app = new Vue({
     store,
     components:{
         Index
+    },
+    beforeCreate()
+    {
+        store.dispatch("auth/getUser");
     }
 });
