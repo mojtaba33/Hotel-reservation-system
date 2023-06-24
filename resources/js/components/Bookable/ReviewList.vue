@@ -5,7 +5,7 @@
             <div class="border-top pt-2" v-for="(review,i) in reviews" :key="'rev-'+i" >
                 <div class="row">
                     <div class="col pb-1 font-weight-bolder">
-                        davood
+                        {{ review.username }}
                     </div>
                     <div class="col d-flex justify-content-end">
                         <star-rating :value="review.rating"></star-rating>

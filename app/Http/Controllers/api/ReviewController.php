@@ -20,7 +20,7 @@ class ReviewController extends Controller
      */
     public function index(Bookable $bookable)
     {
-        return new ReviewCollection($bookable->reviews()->latest()->get());
+        return new ReviewCollection($bookable->reviews()->with('booking','booking.address')->latest()->get());
     }
 
     public function show(Review $review)

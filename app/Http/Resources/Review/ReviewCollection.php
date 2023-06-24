@@ -16,6 +16,7 @@ class ReviewCollection extends ResourceCollection
     {
         return $this->collection->map(function ($item){
             return [
+                'username' => $item->booking->address->full_name,
                 'content' => $item->content,
                 'created_at' => $item->created_at,
                 'rating' => $item->rating,

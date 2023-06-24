@@ -64453,7 +64453,11 @@ var render = function() {
                 [
                   _c("div", { staticClass: "row" }, [
                     _c("div", { staticClass: "col pb-1 font-weight-bolder" }, [
-                      _vm._v("\n                    davood\n                ")
+                      _vm._v(
+                        "\n                    " +
+                          _vm._s(review.username) +
+                          "\n                "
+                      )
                     ]),
                     _vm._v(" "),
                     _c(

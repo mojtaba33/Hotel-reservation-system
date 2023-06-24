@@ -15,4 +15,9 @@ class Address extends Model
     {
         return $this->hasOne(Booking::class);
     }
+
+    public function getFullNameAttribute()
+    {
+        return $this->name . ' ' . $this->last_name;
+    }
 }
